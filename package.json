@@ -9,18 +9,33 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.99.3",
+    "@types/canvas-confetti": "^1.9.0",
+    "@uiw/react-md-editor": "^4.0.11",
+    "canvas-confetti": "^1.9.4",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^0.577.0",
+    "next": "14.2.14",
+    "next-themes": "^0.4.6",
     "react": "^18",
+    "react-activity-calendar": "^3.1.1",
     "react-dom": "^18",
-    "next": "14.2.14"
+    "recharts": "^3.8.0",
+    "rehype-sanitize": "^6.0.0",
+    "tailwind-merge": "^3.5.0",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.14",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.14"
+    "typescript": "^5"
   }
 }
