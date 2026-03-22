@@ -21,6 +21,38 @@ export default function ProfilePage() {
 
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState('');
+
+  const [followersCount, setFollowersCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
+  const [friendsCount, setFriendsCount] = useState(0);
+  const [rivalsCount, setRivalsCount] = useState(0);
+
+  useEffect(() => {
+    if (user?.id) {
+      const fetchSocialStats = async () => {
+        try {
+          const [{ data: myFollowers }, { data: imFollowing }, { count: rivalsCountData }] = await Promise.all([
+            supabase.from('follows').select('follower_id').eq('following_id', user.id),
+            supabase.from('follows').select('following_id').eq('follower_id', user.id),
+            supabase.from('rivals').select('*', { count: 'exact', head: true }).eq('user_id', user.id)
+          ]);
+
+          const followers = myFollowers?.map(f => f.follower_id) || [];
+          const following = imFollowing?.map(f => f.following_id) || [];
+          const friends = followers.filter(id => following.includes(id));
+
+          setFollowersCount(followers.length);
+          setFollowingCount(following.length);
+          setFriendsCount(friends.length);
+          setRivalsCount(rivalsCountData || 0);
+        } catch (err) {
+          console.error('Error fetching social stats', err);
+        }
+      };
+      
+      fetchSocialStats();
+    }
+  }, [user?.id]);
   
   useEffect(() => {
     if (user) {
@@ -127,6 +159,29 @@ export default function ProfilePage() {
               <Zap className="w-4 h-4 inline mr-1 text-yellow-300" />
               {gamification?.xp || 0} Total XP <span className="mx-2 opacity-50">•</span> {gamification?.streak_count || 0} Day Streak
             </span>
+
+            {/* Social Stats Grid */}
+            <div className="flex flex-wrap items-center gap-6 mt-6 justify-center md:justify-start">
+              <div className="flex flex-col items-center md:items-start group cursor-help" title="Players following you">
+                <span className="text-2xl font-black leading-none text-white group-hover:text-indigo-300 transition-colors">{followersCount}</span>
+                <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Followers</span>
+              </div>
+              <div className="w-px h-8 bg-white/20"></div>
+              <div className="flex flex-col items-center md:items-start group cursor-help" title="Players you are following">
+                <span className="text-2xl font-black leading-none text-white group-hover:text-pink-300 transition-colors">{followingCount}</span>
+                <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Following</span>
+              </div>
+              <div className="w-px h-8 bg-white/20"></div>
+              <div className="flex flex-col items-center md:items-start group cursor-help" title="Mutual followers">
+                <span className="text-2xl font-black leading-none text-white group-hover:text-green-300 transition-colors">{friendsCount}</span>
+                <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Friends</span>
+              </div>
+              <div className="w-px h-8 bg-white/20"></div>
+              <div className="flex flex-col items-center md:items-start group cursor-help" title="Declared rivalries">
+                <span className="text-2xl font-black leading-none text-white group-hover:text-red-400 transition-colors">{rivalsCount}</span>
+                <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Rivals</span>
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
