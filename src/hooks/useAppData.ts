@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabase';
 import { useUserStore } from '@/store/userStore';
 import { useTaskStore, Task } from '@/store/taskStore';
 import { useGamificationStore, GamificationData } from '@/store/gamificationStore';
+import { toast } from 'react-hot-toast';
 
 export function useAppData() {
   const user = useUserStore((state) => state.user);
@@ -41,6 +42,41 @@ export function useAppData() {
           console.error('Error loading gamification data:', gamificationError);
         }
 
+        let finalGamificationData = gamificationData as GamificationData | null;
+        if (finalGamificationData) {
+          const today = new Date().toISOString().split('T')[0];
+          const lastActiveStr = finalGamificationData.last_active_date;
+          const lastActiveDate = lastActiveStr ? lastActiveStr.split('T')[0] : null;
+
+          if (lastActiveDate !== today) {
+            const newXP = finalGamificationData.xp + 5;
+            const newLevel = Math.floor(newXP / 100) + 1;
+            const newDate = new Date().toISOString();
+
+            const { error: updateError } = await supabase
+              .from('gamification')
+              .update({ xp: newXP, level: newLevel, last_active_date: newDate })
+              .eq('user_id', userId);
+
+            if (!updateError) {
+              finalGamificationData = {
+                ...finalGamificationData,
+                xp: newXP,
+                level: newLevel,
+                last_active_date: newDate
+              };
+              
+              // Add a slight delay to ensure toast shows after DOM paints
+              setTimeout(() => {
+                toast.success('Congratulations! 5 XP free reward for login', { 
+                  duration: 5000,
+                  icon: '🏆'
+                });
+              }, 1000);
+            }
+          }
+        }
+
         // Fetch User Profile
         const { data: userProfile, error: userError } = await supabase
           .from('users')
@@ -54,8 +90,8 @@ export function useAppData() {
 
         if (isMounted) {
           setTasks(tasksData as Task[]);
-          if (gamificationData) {
-            setGamificationData(gamificationData as GamificationData);
+          if (finalGamificationData) {
+            setGamificationData(finalGamificationData);
           }
           if (userProfile && user) {
             setUser({ ...user, ...userProfile });

@@ -13,6 +13,7 @@ import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import rehypeSanitize from "rehype-sanitize";
+import { toast } from 'react-hot-toast';
 
 const MDEditor = dynamic(
   () => import("@uiw/react-md-editor").then((mod) => mod.default),
@@ -77,13 +78,36 @@ export function TaskBoard() {
         spread: 70,
         origin: { y: 0.6 }
       });
-      addXP(10);
+
+      // Calculate completed task count to check for milestone
+      const completedCount = tasks.filter(t => t.id !== task.id && t.status === 'completed').length + 1;
+      const isMilestone = completedCount > 0 && completedCount % 10 === 0;
+      const earnedXP = isMilestone ? 30 : 10; // 10 base + 20 bonus
       
-      // Await the server-side XP increment — roll back local XP on failure
-      const { error: xpError } = await supabase.rpc('increment_xp', { amount: 10, user_uuid: user?.id });
-      if (xpError) {
-        console.error("XP rpc error", xpError);
-        addXP(-10); // Roll back local XP
+      if (isMilestone) {
+        toast.success(`Milestone Reached! 10 Tasks Completed. +30 Total XP!`, { icon: '🎉' });
+      } else {
+        toast.success(`Task Completed! +10 XP`, { icon: '✨' });
+      }
+
+      addXP(earnedXP);
+      
+      const currentGamification = useGamificationStore.getState().data;
+      if (currentGamification) {
+        const newTotalXP = currentGamification.xp + earnedXP;
+        const newLevel = Math.floor(newTotalXP / 100) + 1;
+
+        // Direct Supabase update instead of broken RPC
+        const { error: xpError } = await supabase
+          .from('gamification')
+          .update({ xp: newTotalXP, level: newLevel })
+          .eq('user_id', user?.id);
+          
+        if (xpError) {
+          console.error("XP update error", xpError);
+          addXP(-earnedXP); // Roll back local XP
+          toast.error("Failed to save XP. Rolling back.");
+        }
       }
     }
 

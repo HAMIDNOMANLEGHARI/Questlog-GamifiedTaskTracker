@@ -23,6 +23,7 @@
     "react": "^18",
     "react-activity-calendar": "^3.1.1",
     "react-dom": "^18",
+    "react-hot-toast": "^2.6.0",
     "recharts": "^3.8.0",
     "rehype-sanitize": "^6.0.0",
     "tailwind-merge": "^3.5.0",
