@@ -8,6 +8,7 @@ import { useTheme } from 'next-themes';
 import { Loader2, Palette, Save, Shield, Zap, User, Upload, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SHOP_ITEMS } from '@/constants/shop';
+import { SocialListModal } from '@/components/SocialListModal';
 
 export default function ProfilePage() {
   const { user, setUser } = useUserStore();
@@ -22,29 +23,35 @@ export default function ProfilePage() {
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState('');
 
-  const [followersCount, setFollowersCount] = useState(0);
-  const [followingCount, setFollowingCount] = useState(0);
-  const [friendsCount, setFriendsCount] = useState(0);
-  const [rivalsCount, setRivalsCount] = useState(0);
+  const [followersList, setFollowersList] = useState<string[]>([]);
+  const [followingList, setFollowingList] = useState<string[]>([]);
+  const [friendsList, setFriendsList] = useState<string[]>([]);
+  const [rivalsList, setRivalsList] = useState<string[]>([]);
+
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    title: '',
+    userIds: [] as string[]
+  });
 
   useEffect(() => {
     if (user?.id) {
       const fetchSocialStats = async () => {
         try {
-          const [{ data: myFollowers }, { data: imFollowing }, { count: rivalsCountData }] = await Promise.all([
+          const [{ data: myFollowers }, { data: imFollowing }, { data: myRivals }] = await Promise.all([
             supabase.from('follows').select('follower_id').eq('following_id', user.id),
             supabase.from('follows').select('following_id').eq('follower_id', user.id),
-            supabase.from('rivals').select('*', { count: 'exact', head: true }).eq('user_id', user.id)
+            supabase.from('rivals').select('rival_id').eq('user_id', user.id)
           ]);
 
           const followers = myFollowers?.map(f => f.follower_id) || [];
           const following = imFollowing?.map(f => f.following_id) || [];
           const friends = followers.filter(id => following.includes(id));
 
-          setFollowersCount(followers.length);
-          setFollowingCount(following.length);
-          setFriendsCount(friends.length);
-          setRivalsCount(rivalsCountData || 0);
+          setFollowersList(followers);
+          setFollowingList(following);
+          setFriendsList(friends);
+          setRivalsList(myRivals?.map(r => r.rival_id) || []);
         } catch (err) {
           console.error('Error fetching social stats', err);
         }
@@ -162,29 +169,48 @@ export default function ProfilePage() {
 
             {/* Social Stats Grid */}
             <div className="flex flex-wrap items-center gap-6 mt-6 justify-center md:justify-start">
-              <div className="flex flex-col items-center md:items-start group cursor-help" title="Players following you">
-                <span className="text-2xl font-black leading-none text-white group-hover:text-indigo-300 transition-colors">{followersCount}</span>
+              <div 
+                onClick={() => setModalConfig({ isOpen: true, title: 'Followers', userIds: followersList })}
+                className="flex flex-col items-center md:items-start group cursor-pointer" title="Players following you"
+              >
+                <span className="text-2xl font-black leading-none text-white group-hover:text-indigo-300 transition-colors">{followersList.length}</span>
                 <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Followers</span>
               </div>
               <div className="w-px h-8 bg-white/20"></div>
-              <div className="flex flex-col items-center md:items-start group cursor-help" title="Players you are following">
-                <span className="text-2xl font-black leading-none text-white group-hover:text-pink-300 transition-colors">{followingCount}</span>
+              <div 
+                onClick={() => setModalConfig({ isOpen: true, title: 'Following', userIds: followingList })}
+                className="flex flex-col items-center md:items-start group cursor-pointer" title="Players you are following"
+              >
+                <span className="text-2xl font-black leading-none text-white group-hover:text-pink-300 transition-colors">{followingList.length}</span>
                 <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Following</span>
               </div>
               <div className="w-px h-8 bg-white/20"></div>
-              <div className="flex flex-col items-center md:items-start group cursor-help" title="Mutual followers">
-                <span className="text-2xl font-black leading-none text-white group-hover:text-green-300 transition-colors">{friendsCount}</span>
+              <div 
+                onClick={() => setModalConfig({ isOpen: true, title: 'Mutual Friends', userIds: friendsList })}
+                className="flex flex-col items-center md:items-start group cursor-pointer" title="Mutual followers"
+              >
+                <span className="text-2xl font-black leading-none text-white group-hover:text-green-300 transition-colors">{friendsList.length}</span>
                 <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Friends</span>
               </div>
               <div className="w-px h-8 bg-white/20"></div>
-              <div className="flex flex-col items-center md:items-start group cursor-help" title="Declared rivalries">
-                <span className="text-2xl font-black leading-none text-white group-hover:text-red-400 transition-colors">{rivalsCount}</span>
+              <div 
+                onClick={() => setModalConfig({ isOpen: true, title: 'Rivals', userIds: rivalsList })}
+                className="flex flex-col items-center md:items-start group cursor-pointer" title="Declared rivalries"
+              >
+                <span className="text-2xl font-black leading-none text-white group-hover:text-red-400 transition-colors">{rivalsList.length}</span>
                 <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Rivals</span>
               </div>
             </div>
           </div>
         </div>
       </motion.div>
+
+      <SocialListModal 
+        isOpen={modalConfig.isOpen} 
+        onClose={() => setModalConfig({ ...modalConfig, isOpen: false })}
+        title={modalConfig.title} 
+        userIds={modalConfig.userIds} 
+      />
 
       <motion.form 
         initial={{ opacity: 0, y: 20 }}

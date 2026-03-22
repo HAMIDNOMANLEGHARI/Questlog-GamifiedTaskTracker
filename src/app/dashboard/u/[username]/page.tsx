@@ -6,6 +6,7 @@ import { useUserStore } from '@/store/userStore';
 import { Task } from '@/store/taskStore';
 import { SHOP_ITEMS } from '@/constants/shop';
 import { Users, Loader2, Target, Trophy, Flame, CheckCircle2, Circle } from 'lucide-react';
+import { SocialListModal } from '@/components/SocialListModal';
 
 interface PublicProfile {
   id: string;
@@ -33,11 +34,19 @@ export default function PublicProfilePage() {
   const [stats, setStats] = useState<GamificationStats | null>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
   
-  const [followers, setFollowers] = useState(0);
-  const [following, setFollowing] = useState(0);
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [followersList, setFollowersList] = useState<string[]>([]);
+  const [followingList, setFollowingList] = useState<string[]>([]);
+  const [friendsList, setFriendsList] = useState<string[]>([]);
+  const [rivalsList, setRivalsList] = useState<string[]>([]);
   
+  const [isFollowing, setIsFollowing] = useState(false);
   const [isRival, setIsRival] = useState(false);
+
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    title: '',
+    userIds: [] as string[]
+  });
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
 
@@ -69,13 +78,20 @@ export default function PublicProfilePage() {
       
       if (gamifData) setStats(gamifData as GamificationStats);
 
-      // 3. Fetch Follow Counts
-      const [{ count: fwerCount }, { count: fwingCount }] = await Promise.all([
-        supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', userData.id),
-        supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', userData.id)
+      // 3. Fetch Follow & Rival Links
+      const [{ data: myFollowers }, { data: imFollowing }, { data: myRivals }] = await Promise.all([
+        supabase.from('follows').select('follower_id').eq('following_id', userData.id),
+        supabase.from('follows').select('following_id').eq('follower_id', userData.id),
+        supabase.from('rivals').select('rival_id').eq('user_id', userData.id)
       ]);
-      setFollowers(fwerCount || 0);
-      setFollowing(fwingCount || 0);
+      const followers = myFollowers?.map(f => f.follower_id) || [];
+      const following = imFollowing?.map(f => f.following_id) || [];
+      const friends = followers.filter(id => following.includes(id));
+
+      setFollowersList(followers);
+      setFollowingList(following);
+      setFriendsList(friends);
+      setRivalsList(myRivals?.map(r => r.rival_id) || []);
 
       // 4. Fetch their tasks
       const { data: userTasks } = await supabase
@@ -118,11 +134,15 @@ export default function PublicProfilePage() {
       if (isFollowing) {
         await supabase.from('follows').delete().eq('follower_id', currentUser.id).eq('following_id', profile.id);
         setIsFollowing(false);
-        setFollowers(f => Math.max(0, f - 1));
+        setFollowersList(prev => prev.filter(id => id !== currentUser.id));
+        setFriendsList(prev => prev.filter(id => id !== currentUser.id));
       } else {
         await supabase.from('follows').insert({ follower_id: currentUser.id, following_id: profile.id });
         setIsFollowing(true);
-        setFollowers(f => f + 1);
+        setFollowersList(prev => [...prev, currentUser.id]);
+        if (followingList.includes(currentUser.id)) {
+          setFriendsList(prev => [...prev, currentUser.id]);
+        }
       }
     } catch (e) {
       console.error(e);
@@ -138,9 +158,11 @@ export default function PublicProfilePage() {
       if (isRival) {
         await supabase.from('rivals').delete().eq('user_id', currentUser.id).eq('rival_id', profile.id);
         setIsRival(false);
+        setRivalsList(prev => prev.filter(id => id !== currentUser.id));
       } else {
         await supabase.from('rivals').insert({ user_id: currentUser.id, rival_id: profile.id });
         setIsRival(true);
+        setRivalsList(prev => [...prev, currentUser.id]);
       }
     } catch (e) {
       console.error(e);
@@ -203,14 +225,36 @@ export default function PublicProfilePage() {
               <p className="text-zinc-500 font-bold tracking-wide">@{profile.username}</p>
               
               <div className="flex items-center gap-4 mt-4 pt-2">
-                <div className="flex flex-col">
-                  <span className="text-2xl font-black leading-none">{followers}</span>
-                  <span className="text-xs uppercase font-bold text-zinc-400">Followers</span>
+                <div 
+                  onClick={() => setModalConfig({ isOpen: true, title: 'Followers', userIds: followersList })}
+                  className="flex flex-col cursor-pointer group"
+                >
+                  <span className="text-2xl font-black leading-none group-hover:text-indigo-400 transition-colors">{followersList.length}</span>
+                  <span className="text-xs uppercase font-bold text-zinc-400 group-hover:text-zinc-300">Followers</span>
                 </div>
                 <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800"></div>
-                <div className="flex flex-col">
-                  <span className="text-2xl font-black leading-none">{following}</span>
-                  <span className="text-xs uppercase font-bold text-zinc-400">Following</span>
+                <div 
+                  onClick={() => setModalConfig({ isOpen: true, title: 'Following', userIds: followingList })}
+                  className="flex flex-col cursor-pointer group"
+                >
+                  <span className="text-2xl font-black leading-none group-hover:text-pink-400 transition-colors">{followingList.length}</span>
+                  <span className="text-xs uppercase font-bold text-zinc-400 group-hover:text-zinc-300">Following</span>
+                </div>
+                <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800"></div>
+                <div 
+                  onClick={() => setModalConfig({ isOpen: true, title: 'Mutual Friends', userIds: friendsList })}
+                  className="flex flex-col cursor-pointer group"
+                >
+                  <span className="text-2xl font-black leading-none group-hover:text-green-400 transition-colors">{friendsList.length}</span>
+                  <span className="text-xs uppercase font-bold text-zinc-400 group-hover:text-zinc-300">Friends</span>
+                </div>
+                <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800"></div>
+                <div 
+                  onClick={() => setModalConfig({ isOpen: true, title: 'Rivals', userIds: rivalsList })}
+                  className="flex flex-col cursor-pointer group"
+                >
+                  <span className="text-2xl font-black leading-none group-hover:text-red-400 transition-colors">{rivalsList.length}</span>
+                  <span className="text-xs uppercase font-bold text-zinc-400 group-hover:text-zinc-300">Rivals</span>
                 </div>
               </div>
             </div>
@@ -326,6 +370,13 @@ export default function PublicProfilePage() {
           </div>
         )}
       </div>
+
+      <SocialListModal 
+        isOpen={modalConfig.isOpen} 
+        onClose={() => setModalConfig({ ...modalConfig, isOpen: false })}
+        title={modalConfig.title} 
+        userIds={modalConfig.userIds} 
+      />
     </div>
   );
 }
