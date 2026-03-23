@@ -45,54 +45,7 @@ export default function CommunityPage() {
         .limit(10);
 
       if (error) throw error;
-      
-      const realLeaders = data as unknown as LeaderboardEntry[];
-      
-      const dummyLeaders: LeaderboardEntry[] = [
-        {
-          user_id: 'dummy_ceo_001',
-          xp: 999999,
-          level: 100,
-          users: {
-            name: 'Alexander Sterling',
-            email: 'ceo@questlog.test',
-            avatar_url: '/img/ceo.jpg',
-            title: 'CHIEF EXECUTIVE OFFICER',
-            ring: 'diamond-mythic',
-            username: 'alexander_ceo'
-          }
-        },
-        {
-          user_id: 'dummy_coo_002',
-          xp: 888888,
-          level: 95,
-          users: {
-            name: 'Marcus Vance',
-            email: 'coo@questlog.test',
-            avatar_url: '/img/coo.jpg',
-            title: 'CHIEF OPERATING OFFICER',
-            ring: 'ruby-grandmaster',
-            username: 'marcus_coo'
-          }
-        },
-        {
-          user_id: 'dummy_cfo_003',
-          xp: 777777,
-          level: 90,
-          users: {
-            name: 'Julian Hayes',
-            email: 'cfo@questlog.test',
-            avatar_url: '/img/cfo.jpg',
-            title: 'CHIEF FINANCIAL OFFICER',
-            ring: 'emerald-master',
-            username: 'julian_cfo'
-          }
-        }
-      ];
-
-      // Remove any conflict if dummy user is real
-      const filteredReal = realLeaders.filter(l => !dummyLeaders.some(d => d.user_id === l.user_id));
-      setLeaders([...dummyLeaders, ...filteredReal].slice(0, 10));
+      setLeaders(data as unknown as LeaderboardEntry[]);
     } catch (err) {
       console.error(err);
     } finally {

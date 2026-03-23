@@ -396,6 +396,85 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* MEET THE TEAM SECTION */}
+      <section id="team" className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20">
+        <div className="text-center space-y-4 mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-black tracking-tighter"
+          >
+            Built by <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-400 to-amber-500">Elite Talent.</span>
+          </motion.h2>
+          <p className="text-zinc-400 text-lg font-medium max-w-2xl mx-auto">
+            The C-Suite driving the Gamified Productivity revolution forward.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {/* CEO */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="group relative"
+          >
+            <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-zinc-900 border-2 border-white/5 relative mb-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 z-10 pointer-events-none" />
+              <img src="/img/ceo.jpg" alt="CEO" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <div className="absolute bottom-4 left-4 z-20 flex gap-2">
+                 <span className="px-3 py-1 bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">LVL 100</span>
+                 <span className="px-3 py-1 bg-black/50 text-white border border-white/10 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">🥇 First</span>
+              </div>
+            </div>
+            <h3 className="text-2xl font-black tracking-tight mb-1">Alexander Sterling</h3>
+            <p className="text-zinc-500 font-bold text-sm tracking-wider uppercase">Chief Executive Officer</p>
+          </motion.div>
+
+          {/* COO */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="group relative md:translate-y-12"
+          >
+            <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-zinc-900 border-2 border-white/5 relative mb-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 z-10 pointer-events-none" />
+              <img src="/img/coo.jpg" alt="COO" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <div className="absolute bottom-4 left-4 z-20 flex gap-2">
+                 <span className="px-3 py-1 bg-zinc-400/10 text-zinc-300 border border-zinc-400/20 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">LVL 95</span>
+                 <span className="px-3 py-1 bg-black/50 text-white border border-white/10 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">🥈 Second</span>
+              </div>
+            </div>
+            <h3 className="text-2xl font-black tracking-tight mb-1">Marcus Vance</h3>
+            <p className="text-zinc-500 font-bold text-sm tracking-wider uppercase">Chief Operating Officer</p>
+          </motion.div>
+
+          {/* CFO */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="group relative"
+          >
+            <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-zinc-900 border-2 border-white/5 relative mb-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 z-10 pointer-events-none" />
+              <img src="/img/cfo.jpg" alt="CFO" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <div className="absolute bottom-4 left-4 z-20 flex gap-2">
+                 <span className="px-3 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">LVL 90</span>
+                 <span className="px-3 py-1 bg-black/50 text-white border border-white/10 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">🥉 Third</span>
+              </div>
+            </div>
+            <h3 className="text-2xl font-black tracking-tight mb-1">Julian Hayes</h3>
+            <p className="text-zinc-500 font-bold text-sm tracking-wider uppercase">Chief Financial Officer</p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CALL TO ACTION BOTTOM */}
       <section className="relative w-full py-32 mt-16 border-t border-white/5 bg-gradient-to-b from-[#050505] to-indigo-950/20 text-center px-6 overflow-hidden">
          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
