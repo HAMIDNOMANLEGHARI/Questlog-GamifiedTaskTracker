@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Trophy, Users, UserPlus, Loader2 } from 'lucide-react';
+import { Trophy, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useUserStore } from '@/store/userStore';
 import { SHOP_ITEMS } from '@/constants/shop';
@@ -28,8 +28,6 @@ export default function CommunityPage() {
   const { user } = useUserStore();
   const [leaders, setLeaders] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [friendEmail, setFriendEmail] = useState('');
-  const [friendStatus, setFriendStatus] = useState({ message: '', error: false });
 
   useEffect(() => {
     fetchLeaderboard();
@@ -52,50 +50,6 @@ export default function CommunityPage() {
       console.error(err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleAddFriend = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!friendEmail.trim() || !user) return;
-    setFriendStatus({ message: 'Searching...', error: false });
-
-    try {
-      // Find the user by email
-      const { data: friendData, error: friendError } = await supabase
-        .from('users')
-        .select('id')
-        .eq('email', friendEmail)
-        .single();
-
-      if (friendError || !friendData) {
-        throw new Error("Could not find a user with that email address.");
-      }
-
-      if (friendData.id === user.id) {
-        throw new Error("You cannot add yourself as a friend!");
-      }
-
-      // Add to friendships table
-      const { error: insertError } = await supabase
-        .from('friendships')
-        .insert({
-          user_id: user.id,
-          friend_id: friendData.id,
-          status: 'pending'
-        });
-
-      if (insertError) {
-        if (insertError.code === '23505') throw new Error("Friend request already sent.");
-        throw insertError;
-      }
-
-      setFriendStatus({ message: 'Friend request sent successfully!', error: false });
-      setFriendEmail('');
-    } catch (err) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const error = err as any;
-      setFriendStatus({ message: error.message || "Failed to add friend", error: true });
     }
   };
 
@@ -178,37 +132,8 @@ export default function CommunityPage() {
           </div>
         </div>
 
-        {/* Friends & Co-op Section */}
+        {/* Co-op Section */}
         <div className="space-y-6">
-          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
-            <div className="flex items-center gap-3 mb-4">
-              <Users className="h-5 w-5 text-zinc-400" />
-              <h2 className="font-semibold">Add Friends</h2>
-            </div>
-            <form onSubmit={handleAddFriend} className="space-y-3">
-              <input 
-                aria-label="Friend Email Address"
-                type="email"
-                required
-                value={friendEmail}
-                onChange={(e) => setFriendEmail(e.target.value)}
-                placeholder="friend@example.com"
-                className="w-full text-sm px-4 py-2 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium"
-              />
-              <button 
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
-              >
-                <UserPlus className="h-4 w-4" /> Send Request
-              </button>
-            </form>
-            {friendStatus.message && (
-              <p className={`mt-3 text-xs font-medium text-center ${friendStatus.error ? 'text-red-500' : 'text-emerald-500'}`}>
-                {friendStatus.message}
-              </p>
-            )}
-          </div>
-
           <GlobalTavern />
         </div>
 
