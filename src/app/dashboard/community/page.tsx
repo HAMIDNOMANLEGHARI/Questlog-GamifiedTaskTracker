@@ -45,7 +45,54 @@ export default function CommunityPage() {
         .limit(10);
 
       if (error) throw error;
-      setLeaders(data as unknown as LeaderboardEntry[]);
+      
+      const realLeaders = data as unknown as LeaderboardEntry[];
+      
+      const dummyLeaders: LeaderboardEntry[] = [
+        {
+          user_id: 'dummy_ceo_001',
+          xp: 999999,
+          level: 100,
+          users: {
+            name: 'Alexander Sterling',
+            email: 'ceo@questlog.test',
+            avatar_url: '/img/ceo.jpg',
+            title: 'CHIEF EXECUTIVE OFFICER',
+            ring: 'diamond-mythic',
+            username: 'alexander_ceo'
+          }
+        },
+        {
+          user_id: 'dummy_coo_002',
+          xp: 888888,
+          level: 95,
+          users: {
+            name: 'Marcus Vance',
+            email: 'coo@questlog.test',
+            avatar_url: '/img/coo.jpg',
+            title: 'CHIEF OPERATING OFFICER',
+            ring: 'ruby-grandmaster',
+            username: 'marcus_coo'
+          }
+        },
+        {
+          user_id: 'dummy_cfo_003',
+          xp: 777777,
+          level: 90,
+          users: {
+            name: 'Julian Hayes',
+            email: 'cfo@questlog.test',
+            avatar_url: '/img/cfo.jpg',
+            title: 'CHIEF FINANCIAL OFFICER',
+            ring: 'emerald-master',
+            username: 'julian_cfo'
+          }
+        }
+      ];
+
+      // Remove any conflict if dummy user is real
+      const filteredReal = realLeaders.filter(l => !dummyLeaders.some(d => d.user_id === l.user_id));
+      setLeaders([...dummyLeaders, ...filteredReal].slice(0, 10));
     } catch (err) {
       console.error(err);
     } finally {
@@ -102,11 +149,7 @@ export default function CommunityPage() {
                       SHOP_ITEMS.rings.find(r => r.id === (leader.users.ring || 'basic-white'))?.borderClass || 'border-zinc-200 dark:border-zinc-700'
                     }`}>
                       {leader.users.avatar_url ? (
-                        leader.users.avatar_url.startsWith('http') ? (
-                          <img src={leader.users.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
-                        ) : (
-                          <span>{leader.users.avatar_url}</span>
-                        )
+                        <img src={leader.users.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
                       ) : (
                         <span className="text-zinc-500 dark:text-zinc-400">{(leader.users.name || leader.users.email).substring(0, 1).toUpperCase()}</span>
                       )}
