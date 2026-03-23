@@ -102,7 +102,7 @@ export default function LandingPage() {
       <div className="absolute top-[40%] left-[50%] w-[800px] h-[400px] bg-emerald-600/10 rounded-full blur-[180px] pointer-events-none transform -translate-x-1/2" />
 
       {/* HERO SECTION */}
-      <div id="hero" className="max-w-7xl mx-auto px-6 pt-24 pb-20 grid lg:grid-cols-2 gap-16 items-center relative z-10 min-h-[90vh]">
+      <div id="hero" className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 pb-12 md:pb-20 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 min-h-[90vh]">
         
         {/* Left Content */}
         <motion.div 
@@ -121,7 +121,7 @@ export default function LandingPage() {
             <span className="tracking-wide">THE NEW META FOR PRODUCTIVITY 💀</span>
           </motion.div>
           
-          <h1 className="text-6xl lg:text-[5rem] font-black tracking-tighter leading-[1.05] drop-shadow-2xl">
+          <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-black tracking-tighter leading-[1.05] drop-shadow-2xl">
             Turn your <br className="hidden lg:block"/> to-do lists <br />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               into epic quests.
@@ -274,7 +274,7 @@ export default function LandingPage() {
         </div>
 
         {/* The Grid Map */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[280px]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-auto md:auto-rows-[280px]">
           
           {/* AI Quests (2x2) */}
           <motion.div 
@@ -412,7 +412,7 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-sm md:max-w-5xl mx-auto">
           {/* CEO */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
