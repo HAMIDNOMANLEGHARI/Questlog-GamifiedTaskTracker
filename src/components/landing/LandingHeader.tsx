@@ -7,6 +7,10 @@ export function LandingHeader() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <motion.header 
@@ -22,10 +26,10 @@ export function LandingHeader() {
         </div>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-          <button onClick={scrollToTop} className="hover:text-white transition-colors">Product</button>
-          <button onClick={scrollToTop} className="hover:text-white transition-colors">Features</button>
-          <button onClick={scrollToTop} className="hover:text-white transition-colors">Leaderboard</button>
-          <button onClick={scrollToTop} className="hover:text-white transition-colors">Company</button>
+          <button onClick={() => scrollToSection('hero')} className="hover:text-white transition-colors">Product</button>
+          <button onClick={() => scrollToSection('features')} className="hover:text-white transition-colors">Features</button>
+          <button onClick={() => scrollToSection('features')} className="hover:text-white transition-colors">Leaderboard</button>
+          <button onClick={() => scrollToSection('footer')} className="hover:text-white transition-colors">Company</button>
         </nav>
 
         <div className="flex items-center gap-4">

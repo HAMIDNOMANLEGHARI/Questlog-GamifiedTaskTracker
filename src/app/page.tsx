@@ -251,7 +251,7 @@ export default function LandingPage() {
       </div>
 
       {/* BENTO GRID FEATURES SECTION */}
-      <section className="relative z-10 w-full max-w-7xl mx-auto px-6 py-32 space-y-16">
+      <section id="features" className="relative z-10 w-full max-w-7xl mx-auto px-6 py-32 space-y-16">
         
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <motion.h2 
@@ -416,7 +416,9 @@ export default function LandingPage() {
          </div>
       </section>
 
-      <LandingFooter />
+      <div id="footer">
+        <LandingFooter />
+      </div>
 
     </div>
   );
