@@ -433,7 +433,7 @@ export default function LandingPage() {
             <p className="text-zinc-500 font-bold text-sm tracking-wider uppercase">Chief Executive Officer</p>
           </motion.div>
 
-          {/* COO */}
+          {/* CPO */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -443,17 +443,17 @@ export default function LandingPage() {
           >
             <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-zinc-900 border-2 border-white/5 relative mb-6">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 z-10 pointer-events-none" />
-              <img src="/img/coo.jpg" alt="COO" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <img src="/img/coo.jpg" alt="CPO" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               <div className="absolute bottom-4 left-4 z-20 flex gap-2">
                  <span className="px-3 py-1 bg-zinc-400/10 text-zinc-300 border border-zinc-400/20 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">LVL 95</span>
                  <span className="px-3 py-1 bg-black/50 text-white border border-white/10 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">🥈 Second</span>
               </div>
             </div>
             <h3 className="text-2xl font-black tracking-tight mb-1">Marcus Vance</h3>
-            <p className="text-zinc-500 font-bold text-sm tracking-wider uppercase">Chief Operating Officer</p>
+            <p className="text-zinc-500 font-bold text-sm tracking-wider uppercase">Chief Product Officer</p>
           </motion.div>
 
-          {/* CFO */}
+          {/* CTO */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -463,14 +463,14 @@ export default function LandingPage() {
           >
             <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-zinc-900 border-2 border-white/5 relative mb-6">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 z-10 pointer-events-none" />
-              <img src="/img/cfo.jpg" alt="CFO" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <img src="/img/cfo.jpg" alt="CTO" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               <div className="absolute bottom-4 left-4 z-20 flex gap-2">
                  <span className="px-3 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">LVL 90</span>
                  <span className="px-3 py-1 bg-black/50 text-white border border-white/10 rounded-full text-[10px] font-black tracking-widest uppercase backdrop-blur-md">🥉 Third</span>
               </div>
             </div>
             <h3 className="text-2xl font-black tracking-tight mb-1">Julian Hayes</h3>
-            <p className="text-zinc-500 font-bold text-sm tracking-wider uppercase">Chief Financial Officer</p>
+            <p className="text-zinc-500 font-bold text-sm tracking-wider uppercase">Chief Technology Officer</p>
           </motion.div>
         </div>
       </section>
