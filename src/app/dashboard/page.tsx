@@ -3,31 +3,18 @@
 import { useUserStore } from '@/store/userStore';
 import { useGamificationStore } from '@/store/gamificationStore';
 import { useTaskStore } from '@/store/taskStore';
-import { DashboardCharts } from '@/components/DashboardCharts';
+import { GithubHeatmap } from '@/components/GithubHeatmap';
+import { TotalTasksChart } from '@/components/TotalTasksChart';
 import { RivalWidget } from '@/components/RivalWidget';
-import { Quote, Loader2, Activity } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
-import { ActivityCalendar } from 'react-activity-calendar';
-import { format, subDays, eachDayOfInterval, startOfToday } from 'date-fns';
-import { useTheme } from 'next-themes';
 
 export default function DashboardPage() {
   const { user } = useUserStore();
   const gamification = useGamificationStore((state) => state.data);
   const tasks = useTaskStore((state) => state.tasks);
-  const { theme } = useTheme();
 
   const pendingTasks = tasks.filter(t => t.status === 'pending');
-  
-  const [activities, setActivities] = useState<{ date: string; count: number; level: 0|1|2|3|4 }[]>(() => {
-    return eachDayOfInterval({ start: subDays(startOfToday(), 365), end: startOfToday() }).map(day => ({
-      date: format(day, 'yyyy-MM-dd'),
-      count: 0,
-      level: 0 as 0|1|2|3|4
-    }));
-  });
-  const [isLoadingActivity, setIsLoadingActivity] = useState(true);
   
   const [quote, setQuote] = useState({ text: "The secret of getting ahead is getting started.", author: "Mark Twain" });
 
@@ -41,62 +28,6 @@ export default function DashboardPage() {
     ];
     setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
   }, []);
-
-  useEffect(() => {
-    if (user) {
-      fetchActivity();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
-  const fetchActivity = async () => {
-    try {
-      if (!user) return;
-      
-      const { data, error } = await supabase
-        .from('tasks')
-        .select('updated_at')
-        .eq('status', 'completed')
-        .eq('user_id', user.id);
-
-      if (error) throw error;
-
-      const today = startOfToday();
-      const lastYear = subDays(today, 365);
-      const days = eachDayOfInterval({ start: lastYear, end: today });
-      
-      const activityMap = new Map();
-      days.forEach(day => {
-        activityMap.set(format(day, 'yyyy-MM-dd'), 0);
-      });
-
-      if (data) {
-        data.forEach((task: { updated_at: string | null }) => {
-          if (!task.updated_at) return;
-          const dateStr = format(new Date(task.updated_at), 'yyyy-MM-dd');
-          if (activityMap.has(dateStr)) {
-            activityMap.set(dateStr, activityMap.get(dateStr) + 1);
-          }
-        });
-      }
-
-      const formattedActivities = Array.from(activityMap.entries()).map(([dateStr, count]) => {
-        let level: 0|1|2|3|4 = 0;
-        if (count >= 7) level = 4;
-        else if (count >= 5) level = 3;
-        else if (count >= 3) level = 2;
-        else if (count >= 1) level = 1;
-
-        return { date: dateStr, count, level };
-      });
-
-      setActivities(formattedActivities);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoadingActivity(false);
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -142,7 +73,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm col-span-1 lg:col-span-2">
-          <DashboardCharts />
+          <TotalTasksChart />
         </div>
       </div>
 
@@ -150,42 +81,7 @@ export default function DashboardPage() {
       <RivalWidget />
 
       {/* Productivity Heatmap */}
-      <div className="p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm space-y-4">
-        <h2 className="text-xl font-semibold text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
-          <Activity className="h-5 w-5 text-emerald-500" />
-          Productivity Heatmap
-        </h2>
-        <p className="text-sm text-zinc-500">Your task completion history over the last 365 days.</p>
-        
-        <div className="pt-4 overflow-x-auto pb-4">
-          {isLoadingActivity ? (
-            <div className="flex justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-zinc-300" />
-            </div>
-          ) : (
-            <div className="min-w-[700px]">
-              <ActivityCalendar 
-                data={activities} 
-                theme={{
-                  light: ['#f4f4f5', '#d1fae5', '#34d399', '#10b981', '#059669'],
-                  dark: ['#18181b', '#064e3b', '#047857', '#10b981', '#34d399']
-                }}
-                colorScheme={theme === 'dark' ? 'dark' : 'light'}
-                labels={{
-                  legend: {
-                    less: 'Less',
-                    more: 'More'
-                  },
-                  months: [
-                    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-                  ],
-                  totalCount: '{{count}} tasks completed in the last year'
-                }}
-              />
-            </div>
-          )}
-        </div>
-      </div>
+      <GithubHeatmap />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useTaskStore } from '@/store/taskStore';
 import { useMemo, useState } from 'react';
 import { format, subDays, startOfWeek, addDays, getMonth } from 'date-fns';
 
-export function DashboardCharts() {
+export function GithubHeatmap() {
   const { tasks } = useTaskStore();
   const [hoveredCell, setHoveredCell] = useState<{ date: Date; count: number; x: number; y: number } | null>(null);
 
@@ -79,7 +79,7 @@ export function DashboardCharts() {
   return (
     <div className="w-full flex flex-col p-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[2rem] shadow-sm relative overflow-hidden">
       <h3 className="text-zinc-600 dark:text-zinc-400 mb-6 font-medium">
-        {totalCount} contributions in the last year
+        {totalCount} tasks in last 365 days
       </h3>
       
       <div className="relative flex w-full overflow-x-auto pb-6 hide-scrollbar">
@@ -155,7 +155,7 @@ export function DashboardCharts() {
           style={{ left: hoveredCell.x, top: hoveredCell.y }}
         >
           <span>
-            <strong className="text-zinc-100">{hoveredCell.count === 0 ? 'No' : hoveredCell.count} contributions</strong> on {format(hoveredCell.date, 'MMMM do')}
+            <strong className="text-zinc-100">{hoveredCell.count === 0 ? 'No' : hoveredCell.count} tasks</strong> on {format(hoveredCell.date, 'MMMM do')}
           </span>
           <div className="absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-zinc-900"></div>
         </div>
