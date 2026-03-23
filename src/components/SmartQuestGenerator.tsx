@@ -106,7 +106,7 @@ export function SmartQuestGenerator() {
             <p className="text-blue-700/80 dark:text-blue-300">Enter a big goal and let our AI break it down into an actionable quest.</p>
           </div>
 
-          <form onSubmit={handleGenerate} className="flex gap-3">
+          <form onSubmit={handleGenerate} className="flex flex-col sm:flex-row gap-3">
             <input 
               type="text" 
               value={goal}
@@ -117,7 +117,7 @@ export function SmartQuestGenerator() {
             <button 
               disabled={isGenerating || !goal.trim()}
               type="submit"
-              className="px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors disabled:opacity-50 flex items-center gap-2"
+              className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors disabled:opacity-50 flex justify-center items-center gap-2"
             >
               {isGenerating ? <Loader2 className="h-5 w-5 animate-spin" /> : <Target className="h-5 w-5" />}
               Generate
