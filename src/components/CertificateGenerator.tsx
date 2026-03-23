@@ -50,9 +50,9 @@ export function CertificateGenerator() {
     try {
       // Temporarily ensure the element is visible and styled correctly for the canvas capture
       const canvas = await html2canvas(element, {
-        scale: 3, // High resolution
+        scale: 2, // 2x gives perfect HD without crashing browser memory limits
         useCORS: true,
-        backgroundColor: '#fcfcf9',
+        backgroundColor: '#fdfbf7',
         onclone: (document) => {
           // Remove the responsive CSS scale exclusively for the PDF capture
           const el = document.getElementById('printable-certificate');
@@ -61,7 +61,7 @@ export function CertificateGenerator() {
           }
         }
       });
-      const data = canvas.toDataURL('image/png');
+      const data = canvas.toDataURL('image/jpeg', 0.95); // JPEG is much smaller than PNG for high-res canvases
       
       const pdf = new jsPDF({
         orientation: 'landscape',
@@ -69,7 +69,7 @@ export function CertificateGenerator() {
         format: [canvas.width, canvas.height]
       });
       
-      pdf.addImage(data, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.addImage(data, 'JPEG', 0, 0, canvas.width, canvas.height);
       pdf.save(`LevelUp_Certificate_${user?.name || 'Achiever'}.pdf`);
     } catch (error) {
       console.error('Failed to generate PDF', error);
@@ -107,11 +107,10 @@ export function CertificateGenerator() {
         <div 
           id="printable-certificate"
           ref={printRef}
-          className="relative bg-[#fcfcf9] w-[1000px] h-[700px] flex flex-col items-center justify-center text-center text-black p-8 shadow-2xl shrink-0 origin-top transition-transform duration-300"
+          className="relative w-[1000px] h-[700px] flex flex-col items-center justify-center text-center text-black p-8 shadow-2xl shrink-0 origin-top transition-transform duration-300"
           style={{ 
             transform: `scale(${scale})`,
-            backgroundImage: 'radial-gradient(#e5e7eb 1px, transparent 1px)', 
-            backgroundSize: '40px 40px' 
+            backgroundColor: '#fdfbf7'
           }}
         >
           {/* Outer Border */}
@@ -161,7 +160,7 @@ export function CertificateGenerator() {
               </div>
               
               {/* Gold Seal */}
-              <div className="relative flex items-center justify-center translate-y-8">
+              <div className="relative flex items-center justify-center translate-y-2">
                 <div className="w-36 h-36 rounded-full flex items-center justify-center bg-gradient-to-br from-[#fbbf24] via-[#f59e0b] to-[#b45309] shadow-2xl text-white relative">
                   {/* Outer Ridge */}
                   <div className="absolute inset-2 rounded-full border border-white/30" />
