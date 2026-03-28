@@ -1,9 +1,10 @@
 <div align="center">
+(GO CHECKOUT YOURSELF THEN NO NEED TO READ THIS!)
 
-🚀 **[PLAY THE LIVE DEMO HERE!](https://gamified-task-tracker-rose.vercel.app)** 🚀
+🚀 **[CHECK THE APP HERE!](https://gamified-task-tracker-rose.vercel.app)** 🚀
 
 </div>
-# 🎮 QuestLog (Gamified Productivity App)
+🎮 QuestLog (Gamified Productivity App)
 
 Hey Everyone! So basically, I got tired of boring to-do lists that just stare at you and make you feel bad, so I decided to build a gamified productivity app where you literally level up in real life by doing your tasks. Think of it like a mix of an RPG and an organized calendar. Grinding productivity should actually be fun, right?
 
