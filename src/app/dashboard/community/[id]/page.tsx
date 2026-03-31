@@ -69,7 +69,8 @@ export default function CommunityDetailPage() {
   const [showAddTask, setShowAddTask] = useState(false);
 
   const myMembership = members.find(m => m.user_id === user?.id);
-  const isAdmin = myMembership?.role === 'admin';
+  // Fallback: if user is the creator of the community, they're always admin
+  const isAdmin = myMembership?.role === 'admin' || (community?.creator_id === user?.id);
 
   useEffect(() => {
     if (communityId) loadCommunity();
@@ -95,7 +96,41 @@ export default function CommunityDetailPage() {
         `)
         .eq('community_id', communityId)
         .order('community_xp', { ascending: false });
-      setMembers((membersData as unknown as Member[]) || []);
+      const fetchedMembers = (membersData as unknown as Member[]) || [];
+
+      // Auto-repair: If the current user is the creator but not in the members list,
+      // insert them as admin (fixes RLS chicken-and-egg issue on first visit)
+      const currentUserId = useUserStore.getState().user?.id;
+      if (currentUserId && commData.creator_id === currentUserId) {
+        const creatorInList = fetchedMembers.some(m => m.user_id === currentUserId);
+        if (!creatorInList) {
+          const { error: autoAddError } = await supabase
+            .from('community_members')
+            .upsert(
+              { community_id: communityId, user_id: currentUserId, role: 'admin', community_xp: 0 },
+              { onConflict: 'community_id,user_id' }
+            );
+          if (!autoAddError) {
+            // Re-fetch members after self-insert
+            const { data: refreshedMembers } = await supabase
+              .from('community_members')
+              .select(`
+                id, user_id, role, community_xp,
+                users!inner ( name, username, avatar_url, ring, title )
+              `)
+              .eq('community_id', communityId)
+              .order('community_xp', { ascending: false });
+            setMembers((refreshedMembers as unknown as Member[]) || []);
+          } else {
+            console.warn('Auto-add creator failed (RLS may block), using creator fallback', autoAddError);
+            setMembers(fetchedMembers);
+          }
+        } else {
+          setMembers(fetchedMembers);
+        }
+      } else {
+        setMembers(fetchedMembers);
+      }
 
       // Fetch tasks
       const { data: tasksData } = await supabase
