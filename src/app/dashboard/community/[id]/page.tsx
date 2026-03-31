@@ -645,19 +645,35 @@ function AssignTaskModal({ isOpen, onClose, communityId, members, assignedBy, on
     if (!title.trim() || !assignTo) return;
     setCreating(true);
     try {
-      const { error } = await supabase
-        .from('community_tasks')
-        .insert({
+      if (assignTo === '__all__') {
+        // Bulk assign to every member
+        const rows = members.map(m => ({
           community_id: communityId,
-          assigned_to: assignTo,
+          assigned_to: m.user_id,
           assigned_by: assignedBy,
           title: title.trim(),
           description: description.trim() || null,
           xp_reward: xpReward,
-          status: 'pending',
-        });
-      if (error) throw error;
-      toast.success('Task assigned!', { icon: '📋' });
+          status: 'pending' as const,
+        }));
+        const { error } = await supabase.from('community_tasks').insert(rows);
+        if (error) throw error;
+        toast.success(`Task assigned to all ${members.length} members!`, { icon: '📋' });
+      } else {
+        const { error } = await supabase
+          .from('community_tasks')
+          .insert({
+            community_id: communityId,
+            assigned_to: assignTo,
+            assigned_by: assignedBy,
+            title: title.trim(),
+            description: description.trim() || null,
+            xp_reward: xpReward,
+            status: 'pending',
+          });
+        if (error) throw error;
+        toast.success('Task assigned!', { icon: '📋' });
+      }
       setTitle('');
       setDescription('');
       setXpReward(10);
@@ -706,6 +722,7 @@ function AssignTaskModal({ isOpen, onClose, communityId, members, assignedBy, on
                   <select required value={assignTo} onChange={e => setAssignTo(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 font-medium text-sm">
                     <option value="">Select member</option>
+                    <option value="__all__">⚡ All Members ({members.length})</option>
                     {members.map(m => (
                       <option key={m.user_id} value={m.user_id}>{m.users.name}</option>
                     ))}
