@@ -5,12 +5,25 @@ import { useUserStore } from '@/store/userStore';
 import { useGamificationStore } from '@/store/gamificationStore';
 import { supabase } from '@/lib/supabase';
 import { useTheme } from 'next-themes';
-import { Loader2, Palette, Save, Shield, Zap, User, Upload, Lock } from 'lucide-react';
+import { Loader2, Palette, Save, Shield, Zap, User, Upload, Lock, Users, Crown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SHOP_ITEMS } from '@/constants/shop';
 import { SocialListModal } from '@/components/SocialListModal';
+import { useRouter } from 'next/navigation';
+
+interface MyGuild {
+  community_id: string;
+  role: string;
+  community_xp: number;
+  sub_communities: {
+    id: string;
+    name: string;
+    avatar_emoji: string;
+  };
+}
 
 export default function ProfilePage() {
+  const router = useRouter();
   const { user, setUser } = useUserStore();
   const gamification = useGamificationStore((state) => state.data);
   const { theme, setTheme } = useTheme();
@@ -27,6 +40,7 @@ export default function ProfilePage() {
   const [followingList, setFollowingList] = useState<string[]>([]);
   const [friendsList, setFriendsList] = useState<string[]>([]);
   const [rivalsList, setRivalsList] = useState<string[]>([]);
+  const [myGuilds, setMyGuilds] = useState<MyGuild[]>([]);
 
   const [modalConfig, setModalConfig] = useState({
     isOpen: false,
@@ -56,8 +70,24 @@ export default function ProfilePage() {
           console.error('Error fetching social stats', err);
         }
       };
+
+      const fetchGuilds = async () => {
+        try {
+          const { data } = await supabase
+            .from('community_members')
+            .select(`
+              community_id, role, community_xp,
+              sub_communities!inner ( id, name, avatar_emoji )
+            `)
+            .eq('user_id', user.id);
+          setMyGuilds((data as unknown as MyGuild[]) || []);
+        } catch (err) {
+          console.error('Error fetching guilds', err);
+        }
+      };
       
       fetchSocialStats();
+      fetchGuilds();
     }
   }, [user?.id]);
   
@@ -211,6 +241,37 @@ export default function ProfilePage() {
         title={modalConfig.title} 
         userIds={modalConfig.userIds} 
       />
+
+      {/* Your Guilds */}
+      {myGuilds.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="p-8 rounded-[2rem] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-xl space-y-5"
+        >
+          <h2 className="text-xl font-bold tracking-tight text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
+            <Users className="h-5 w-5 text-indigo-500" /> Your Guilds
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {myGuilds.map((g) => (
+              <div
+                key={g.community_id}
+                onClick={() => router.push(`/dashboard/community/${g.community_id}`)}
+                className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:border-indigo-300 dark:hover:border-indigo-700 cursor-pointer transition-all hover:shadow-md"
+              >
+                <div className="text-2xl">{g.sub_communities.avatar_emoji}</div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-sm truncate">{g.sub_communities.name}</p>
+                  <p className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider flex items-center gap-1">
+                    {g.community_xp} XP {g.role === 'admin' && <Crown className="w-3 h-3 text-yellow-500" />}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       <motion.form 
         initial={{ opacity: 0, y: 20 }}

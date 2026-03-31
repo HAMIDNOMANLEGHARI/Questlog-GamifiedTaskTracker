@@ -5,8 +5,19 @@ import { useParams, useRouter } from 'next/navigation';
 import { useUserStore } from '@/store/userStore';
 import { Task } from '@/store/taskStore';
 import { SHOP_ITEMS } from '@/constants/shop';
-import { Users, Loader2, Target, Trophy, Flame, CheckCircle2, Circle } from 'lucide-react';
+import { Users, Loader2, Target, Trophy, Flame, CheckCircle2, Circle, Crown } from 'lucide-react';
 import { SocialListModal } from '@/components/SocialListModal';
+
+interface PublicGuild {
+  community_id: string;
+  role: string;
+  community_xp: number;
+  sub_communities: {
+    id: string;
+    name: string;
+    avatar_emoji: string;
+  };
+}
 
 interface PublicProfile {
   id: string;
@@ -38,6 +49,7 @@ export default function PublicProfilePage() {
   const [followingList, setFollowingList] = useState<string[]>([]);
   const [friendsList, setFriendsList] = useState<string[]>([]);
   const [rivalsList, setRivalsList] = useState<string[]>([]);
+  const [guilds, setGuilds] = useState<PublicGuild[]>([]);
   
   const [isFollowing, setIsFollowing] = useState(false);
   const [isRival, setIsRival] = useState(false);
@@ -101,6 +113,16 @@ export default function PublicProfilePage() {
         .order('created_at', { ascending: false });
         
       if (userTasks) setTasks(userTasks as Task[]);
+
+      // 5. Fetch guilds
+      const { data: guildsData } = await supabase
+        .from('community_members')
+        .select(`
+          community_id, role, community_xp,
+          sub_communities!inner ( id, name, avatar_emoji )
+        `)
+        .eq('user_id', userData.id);
+      setGuilds((guildsData as unknown as PublicGuild[]) || []);
 
       // 4. Check if CURRENT user is following/rival
       if (currentUser && currentUser.id !== userData.id) {
@@ -318,6 +340,33 @@ export default function PublicProfilePage() {
           </div>
         </div>
       </div>
+
+      {/* Guilds Section */}
+      {guilds.length > 0 && (
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm p-6 lg:p-8">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <Users className="w-6 h-6 text-indigo-500" />
+            Guilds
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {guilds.map((g) => (
+              <div
+                key={g.community_id}
+                onClick={() => router.push(`/dashboard/community/${g.community_id}`)}
+                className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 cursor-pointer transition-all"
+              >
+                <div className="text-2xl">{g.sub_communities.avatar_emoji}</div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-sm truncate">{g.sub_communities.name}</p>
+                  <p className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider flex items-center gap-1">
+                    {g.community_xp} XP {g.role === 'admin' && <Crown className="w-3 h-3 text-yellow-500" />}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Task History Section */}
       <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm p-6 lg:p-8 mt-6">
