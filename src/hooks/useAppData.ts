@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabase';
 import { useUserStore } from '@/store/userStore';
 import { useTaskStore, Task } from '@/store/taskStore';
 import { useGamificationStore, GamificationData } from '@/store/gamificationStore';
+import { useEngagementStore } from '@/store/engagementStore';
 import { toast } from 'react-hot-toast';
 
 export function useAppData() {
@@ -10,10 +11,12 @@ export function useAppData() {
   const setUser = useUserStore((state) => state.setUser);
   const { setTasks, setLoading: setTasksLoading } = useTaskStore();
   const { setData: setGamificationData, setLoading: setGamificationLoading } = useGamificationStore();
+  const { setUserId, processDailyLogin, consumeStreakFreeze } = useEngagementStore();
 
   useEffect(() => {
     const userId = user?.id;
     if (!userId) return;
+    setUserId(userId);
 
     let isMounted = true;
 
@@ -48,7 +51,26 @@ export function useAppData() {
           const lastActiveStr = finalGamificationData.last_active_date;
           const lastActiveDate = lastActiveStr ? lastActiveStr.split('T')[0] : null;
 
+          // Process Local Engagement Decay Patterns (Pets, Chests)
+          const yesterdayDate = new Date();
+          yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+          const yesterdayStr = yesterdayDate.toISOString().split('T')[0];
+          
+          processDailyLogin(today, yesterdayStr);
+
           if (lastActiveDate !== today) {
+            // Process Streak Missing Rules
+            if (lastActiveDate && lastActiveDate !== yesterdayStr && lastActiveDate !== today) {
+              const freezeUsed = consumeStreakFreeze();
+              if (freezeUsed) {
+                setTimeout(() => toast('Streak Freeze Activated! Your streak was saved.', { icon: '❄️' }), 2000);
+              } else {
+                // If they have no freezes, their actual backend streak would ideally reset here.
+                // Assuming backend or task system handles streak clears, we can note it here.
+                setTimeout(() => toast.error('You missed a day and lost your streak!'), 2000);
+              }
+            }
+
             const newXP = finalGamificationData.xp + 5;
             const newLevel = Math.floor(newXP / 100) + 1;
             const newDate = new Date().toISOString();

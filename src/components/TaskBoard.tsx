@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTaskStore, Task } from '@/store/taskStore';
 import { useUserStore } from '@/store/userStore';
 import { useGamificationStore } from '@/store/gamificationStore';
+import { useEngagementStore } from '@/store/engagementStore';
 import { supabase } from '@/lib/supabase';
 import { useTheme } from 'next-themes';
 import { Plus, CheckCircle2, Circle, Clock, Trash2, Loader2, Link as LinkIcon, FileText, ChevronDown, ChevronUp, Save } from 'lucide-react';
@@ -24,6 +25,7 @@ export function TaskBoard() {
   const { user } = useUserStore();
   const { tasks, addTask, updateTask, deleteTask, isLoading } = useTaskStore();
   const { addXP } = useGamificationStore();
+  const { feedPet } = useEngagementStore();
   
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskCategory, setNewTaskCategory] = useState('Personal');
@@ -91,6 +93,7 @@ export function TaskBoard() {
       }
 
       addXP(earnedXP);
+      feedPet(20);
       
       const currentGamification = useGamificationStore.getState().data;
       if (currentGamification) {
