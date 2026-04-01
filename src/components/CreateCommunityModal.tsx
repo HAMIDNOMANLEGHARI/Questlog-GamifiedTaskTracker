@@ -158,7 +158,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
                     onClick={() => setUseCustomImage(false)}
                     className={`flex-1 py-2 px-3 rounded-xl text-sm font-bold transition-all ${
                       !useCustomImage
-                        ? 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-2 border-indigo-400'
+                        ? 'bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 border-2 border-orange-400'
                         : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border-2 border-transparent'
                     }`}
                   >
@@ -169,7 +169,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
                     onClick={() => setUseCustomImage(true)}
                     className={`flex-1 py-2 px-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
                       useCustomImage
-                        ? 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-2 border-indigo-400'
+                        ? 'bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 border-2 border-orange-400'
                         : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border-2 border-transparent'
                     }`}
                   >
@@ -187,7 +187,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
                         onClick={() => setEmoji(e)}
                         className={`w-12 h-12 text-2xl rounded-xl border-2 flex items-center justify-center transition-all hover:scale-110 ${
                           emoji === e
-                            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10 shadow-[0_0_15px_rgba(99,102,241,0.3)]'
+                            ? 'border-orange-500 bg-orange-50 dark:bg-orange-500/10 shadow-[0_0_15px_rgba(99,102,241,0.3)]'
                             : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800'
                         }`}
                       >
@@ -203,7 +203,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
                         <img
                           src={customImageUrl}
                           alt="Group photo"
-                          className="w-24 h-24 rounded-2xl object-cover border-2 border-indigo-500 shadow-lg mx-auto"
+                          className="w-24 h-24 rounded-2xl object-cover border-2 border-orange-500 shadow-lg mx-auto"
                         />
                         <button
                           type="button"
@@ -218,7 +218,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
                         type="button"
                         onClick={() => fileInputRef.current?.click()}
                         disabled={isUploading}
-                        className="w-full py-8 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-2xl flex flex-col items-center justify-center gap-2 text-zinc-500 hover:border-indigo-400 hover:text-indigo-500 transition-all cursor-pointer"
+                        className="w-full py-8 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-2xl flex flex-col items-center justify-center gap-2 text-zinc-500 hover:border-orange-400 hover:text-orange-500 transition-all cursor-pointer"
                       >
                         {isUploading ? (
                           <Loader2 className="w-8 h-8 animate-spin" />
@@ -275,7 +275,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
                 whileTap={!isCreating ? { scale: 0.98 } : {}}
                 type="submit"
                 disabled={isCreating || !name.trim()}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600 to-orange-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 {isCreating ? <Loader2 className="h-5 w-5 animate-spin" /> : <Plus className="h-5 w-5" />}
                 {isCreating ? 'Creating...' : 'Create Group'}

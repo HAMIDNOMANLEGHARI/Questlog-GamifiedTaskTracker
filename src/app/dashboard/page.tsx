@@ -58,7 +58,7 @@ export default function DashboardPage() {
 
         <div className="p-6 rounded-2xl glass-card">
           <h3 className="text-sm font-medium text-zinc-500">Pending Tasks</h3>
-          <p className="text-3xl font-bold text-emerald-500 mt-2">{pendingTasks.length}</p>
+          <p className="text-3xl font-bold text-amber-500 mt-2">{pendingTasks.length}</p>
           <p className="text-xs text-zinc-500 mt-2">Finish them to earn {(pendingTasks.length) * 10} XP</p>
         </div>
       </div>

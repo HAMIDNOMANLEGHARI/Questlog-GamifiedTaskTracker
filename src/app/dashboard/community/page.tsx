@@ -245,7 +245,7 @@ export default function CommunityPage() {
         </div>
         <button
           onClick={() => setShowCreateModal(true)}
-          className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all hover:scale-105"
+          className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-orange-600 to-orange-600 text-white rounded-xl font-bold shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all hover:scale-105"
         >
           <Plus className="w-4 h-4" /> Create Group
         </button>
@@ -263,7 +263,7 @@ export default function CommunityPage() {
         >
           <Users className="w-4 h-4" /> Your Groups
           {myCommunities.length > 0 && (
-            <span className="text-[10px] bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 px-1.5 py-0.5 rounded-full font-black">{myCommunities.length}</span>
+            <span className="text-[10px] bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 px-1.5 py-0.5 rounded-full font-black">{myCommunities.length}</span>
           )}
         </button>
         <button
@@ -276,7 +276,7 @@ export default function CommunityPage() {
         >
           <Globe className="w-4 h-4" /> Discover
           {allDiscoverGroups.length > 0 && (
-            <span className="text-[10px] bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 px-1.5 py-0.5 rounded-full font-black">{allDiscoverGroups.length}</span>
+            <span className="text-[10px] bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 px-1.5 py-0.5 rounded-full font-black">{allDiscoverGroups.length}</span>
           )}
         </button>
       </div>
@@ -294,7 +294,7 @@ export default function CommunityPage() {
               <p className="text-zinc-500 font-bold text-lg">No groups yet</p>
               <p className="text-zinc-400 text-sm mt-1 mb-6">Create your own group or discover existing ones!</p>
               <div className="flex gap-3 justify-center">
-                <button onClick={() => setShowCreateModal(true)} className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors">
+                <button onClick={() => setShowCreateModal(true)} className="flex items-center gap-2 px-5 py-2.5 bg-orange-600 text-white rounded-xl font-bold text-sm hover:bg-orange-700 transition-colors">
                   <Plus className="w-4 h-4" /> Create Group
                 </button>
                 <button onClick={() => setActiveTab('discover')} className="flex items-center gap-2 px-5 py-2.5 bg-zinc-200 dark:bg-zinc-700 rounded-xl font-bold text-sm hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
@@ -309,7 +309,7 @@ export default function CommunityPage() {
                   whileHover={{ scale: 1.03, y: -3 }}
                   key={mc.community_id}
                   onClick={() => router.push(`/dashboard/community/${mc.community_id}`)}
-                  className="cursor-pointer p-5 rounded-2xl glass-card hover:shadow-lg hover:border-indigo-400/50 transition-all"
+                  className="cursor-pointer p-5 rounded-2xl glass-card hover:shadow-lg hover:border-orange-400/50 transition-all"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="text-3xl shrink-0">
@@ -329,7 +329,7 @@ export default function CommunityPage() {
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-zinc-400 font-medium">Your XP</span>
-                    <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400">{mc.community_xp}</span>
+                    <span className="font-mono font-bold text-orange-600 dark:text-orange-400">{mc.community_xp}</span>
                   </div>
                 </motion.div>
               ))}
@@ -423,7 +423,7 @@ export default function CommunityPage() {
                     className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-bold transition-all mt-2 ${
                       pendingRequests.has(group.id)
                         ? 'bg-emerald-100 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 cursor-default'
-                        : 'bg-indigo-100 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-500/25 disabled:opacity-50 disabled:cursor-not-allowed'
+                        : 'bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400 hover:bg-orange-200 dark:hover:bg-orange-500/25 disabled:opacity-50 disabled:cursor-not-allowed'
                     }`}
                   >
                     {pendingRequests.has(group.id) ? (
@@ -495,10 +495,10 @@ export default function CommunityPage() {
                     <div className="flex-1 min-w-0">
                       <p className="font-bold text-zinc-900 dark:text-zinc-100 truncate flex items-center gap-2">
                         {leader.users.name || leader.users.email.split('@')[0]}
-                        {user?.id === leader.user_id && <span className="text-[10px] bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-full tracking-wider uppercase">You</span>}
+                        {user?.id === leader.user_id && <span className="text-[10px] bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 px-2 py-0.5 rounded-full tracking-wider uppercase">You</span>}
                       </p>
                       <p className="text-xs font-bold text-zinc-500 tracking-wider">
-                        LVL {leader.level} <span className="mx-1">•</span> <span className="text-indigo-500 dark:text-indigo-400 uppercase">{leader.users.title || 'NOVICE'}</span>
+                        LVL {leader.level} <span className="mx-1">•</span> <span className="text-orange-500 dark:text-orange-400 uppercase">{leader.users.title || 'NOVICE'}</span>
                       </p>
                     </div>
 

@@ -80,7 +80,7 @@ export function Sidebar() {
            </div>
            <div className="flex-1 min-w-0">
              <div className="text-sm font-bold truncate text-zinc-900 dark:text-white">{user?.name || 'Gamer'}</div>
-             <div className="text-[10px] font-black tracking-widest uppercase text-indigo-500 dark:text-indigo-400">{user?.title || 'Novice'}</div>
+             <div className="text-[10px] font-black tracking-widest uppercase text-orange-500 dark:text-orange-400">{user?.title || 'Novice'}</div>
            </div>
         </div>
         <button

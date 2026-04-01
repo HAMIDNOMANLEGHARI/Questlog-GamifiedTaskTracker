@@ -94,7 +94,7 @@ export function SmartQuestGenerator() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-6 border border-blue-100 dark:border-blue-900/50 mb-8">
+    <div className="bg-gradient-to-r from-blue-50 to-orange-50 dark:from-blue-900/20 dark:to-orange-900/20 rounded-2xl p-6 border border-blue-100 dark:border-blue-900/50 mb-8">
       <div className="flex items-start gap-4">
         <div className="p-3 bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-500/20 shrink-0 mt-1">
           <Sparkles className="h-6 w-6" />
@@ -151,7 +151,7 @@ export function SmartQuestGenerator() {
               <button 
                 onClick={handleAcceptQuest}
                 disabled={isAccepting}
-                className="w-full py-3 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-bold tracking-wide transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 disabled:opacity-50"
+                className="w-full py-3 rounded-lg bg-amber-500 hover:bg-emerald-600 text-white font-bold tracking-wide transition-colors flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 disabled:opacity-50"
               >
                 {isAccepting ? <Loader2 className="h-5 w-5 animate-spin" /> : <Sparkles className="h-5 w-5" />}
                 Accept Quest!

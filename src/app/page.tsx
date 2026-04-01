@@ -92,13 +92,14 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-indigo-500 overflow-x-hidden relative font-sans">
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-orange-500 overflow-x-hidden relative font-sans">
       
       <LandingHeader />
 
-      {/* Cyber Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-50" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#2B60FF]/20 blur-[150px] rounded-full pointer-events-none" />
+      {/* Sunset Ember Ambient Background */}
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-[#FF4500]/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[800px] h-[800px] bg-[#FFA500]/5 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 w-[1000px] h-[500px] bg-[#FF6B00]/5 rounded-full blur-[200px] pointer-events-none" />
 
       {/* HERO SECTION */}
       <div id="hero" className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 pb-12 md:pb-20 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 min-h-[90vh]">
@@ -114,16 +115,16 @@ export default function LandingPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#2B60FF]/30 bg-[#2B60FF]/10 text-xs font-bold text-[#2B60FF]"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-xs font-bold text-orange-400"
           >
             <Activity className="h-4 w-4" />
-            <span className="tracking-wide">BE USEFUL RIGHT NOW.</span>
+            <span className="tracking-wide">LEVEL UP YOUR LIFE.</span>
           </motion.div>
           
           <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-light tracking-tighter leading-[1.05] drop-shadow-2xl">
             PLAN, <br className="hidden lg:block"/> MANAGE & <br />
-            <span className="font-black text-white flex items-center font-bold">
-              TRACK <Target className="w-12 h-12 mx-3 text-[#2B60FF]" /> TASK
+            <span className="font-black bg-gradient-to-r from-[#FF4500] to-[#FFA500] bg-clip-text text-transparent flex items-center font-bold">
+              TRACK <Target className="w-12 h-12 mx-3 text-orange-500" /> TASK
             </span>
           </h1>
           
@@ -164,12 +165,14 @@ export default function LandingPage() {
           {/* Form */}
           <div className="relative glass-card p-8">
             <div className="text-left space-y-2 mb-8">
-              <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2 uppercase glitch-text">
+              <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2 uppercase">
                 {isLogin ? 'ENTER THE ARENA' : 'Join the Party.'}
               </h2>
-              <p className="text-sm text-[#00F0FF] font-bold">
-                {isLogin ? 'Destroy your to-do list.' : 'Start your gamified productivity journey.'}
-              </p>
+              {!isLogin && (
+                <p className="text-sm text-orange-400 font-bold">
+                  Start your gamified productivity journey.
+                </p>
+              )}
             </div>
 
             <form onSubmit={handleAuth} className="space-y-4">
@@ -216,7 +219,7 @@ export default function LandingPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full relative flex items-center justify-center gap-2 rounded-xl px-4 py-4 text-sm font-black text-black uppercase tracking-widest transition-all bg-[#00F0FF] hover:bg-[#FF00FF] hover:text-white border-[2px] border-black shadow-[4px_4px_0_0_#FF00FF] hover:shadow-[4px_4px_0_0_#00F0FF] disabled:opacity-50 disabled:cursor-not-allowed mt-4 group"
+                className="w-full relative flex items-center justify-center gap-2 rounded-xl px-4 py-4 text-sm font-black text-white uppercase tracking-widest transition-all bg-gradient-to-r from-[#FF4500] to-[#FF8C00] hover:from-[#E63E00] hover:to-[#E67E00] shadow-[0_0_20px_rgba(255,69,0,0.4)] disabled:opacity-50 disabled:cursor-not-allowed mt-4 group"
               >
                 {isLoading && <Loader2 className="h-4 w-4 animate-spin flex-shrink-0 text-zinc-400" />}
                 {!isLoading && (isLogin ? 'INITIALIZE LOGIN' : 'CREATE CHARACTER')}
@@ -283,10 +286,10 @@ export default function LandingPage() {
             transition={{ delay: 0.1 }}
             className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#121216] to-[#0A0A0C] border border-white/5 p-10 flex flex-col justify-between"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10 h-full flex flex-col">
-              <div className="h-14 w-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6">
-                <Brain className="h-7 w-7 text-indigo-400" />
+              <div className="h-14 w-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-6">
+                <Brain className="h-7 w-7 text-orange-400" />
               </div>
               <h3 className="text-3xl font-black mb-3">Google Gemini AI Quests</h3>
               <p className="text-zinc-400 text-lg leading-relaxed flex-grow">
@@ -296,7 +299,7 @@ export default function LandingPage() {
               {/* Visual Mockup inside the card */}
               <div className="mt-8 p-4 rounded-xl bg-black/50 border border-white/5 flex flex-col gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse" />
+                  <div className="h-2 w-2 rounded-full bg-orange-500 animate-pulse" />
                   <div className="h-2.5 w-3/4 bg-white/10 rounded-full" />
                 </div>
                 <div className="flex items-center gap-3">
@@ -319,14 +322,14 @@ export default function LandingPage() {
             transition={{ delay: 0.2 }}
             className="md:col-span-2 relative group overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#121216] to-[#0A0A0C] border border-white/5 p-8 flex flex-col justify-between"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10 flex flex-col h-full justify-between">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                  <div className="h-12 w-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
                     <Activity className="h-6 w-6 text-emerald-400" />
                   </div>
-                  <div className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">365-Days</div>
+                  <div className="px-3 py-1 rounded-full bg-amber-500/10 text-emerald-400 text-xs font-bold border border-amber-500/20">365-Days</div>
                 </div>
                 <h3 className="text-2xl font-black mb-2">GitHub-Style Heatmaps</h3>
                 <p className="text-zinc-400 text-sm">Real-time productivity graphs tracking your execution over the last 52 weeks.</p>
@@ -337,7 +340,7 @@ export default function LandingPage() {
                 {[1,2,3,4,5,6,7,8,9,10,11,12].map(col => (
                   <div key={col} className="flex flex-col gap-1.5">
                     {[1,2,3,4,5].map(row => (
-                      <div key={row} className={`h-2.5 w-2.5 rounded-[2px] ${Math.random() > 0.6 ? 'bg-emerald-500' : Math.random() > 0.3 ? 'bg-emerald-800' : 'bg-zinc-800'}`} />
+                      <div key={row} className={`h-2.5 w-2.5 rounded-[2px] ${Math.random() > 0.6 ? 'bg-amber-500' : Math.random() > 0.3 ? 'bg-emerald-800' : 'bg-zinc-800'}`} />
                     ))}
                   </div>
                 ))}
@@ -364,8 +367,8 @@ export default function LandingPage() {
             {/* Visual element */}
             <div className="flex -space-x-4 mt-6">
               <div className="h-10 w-10 rounded-full border-2 border-zinc-900 bg-gradient-to-tr from-pink-500 to-orange-500 z-30 shadow-lg" />
-              <div className="h-10 w-10 rounded-full border-2 border-zinc-900 bg-gradient-to-tr from-indigo-500 to-purple-500 z-20 shadow-lg" />
-              <div className="h-10 w-10 rounded-full border-2 border-zinc-900 bg-gradient-to-tr from-emerald-500 to-teal-500 z-10 shadow-lg" />
+              <div className="h-10 w-10 rounded-full border-2 border-zinc-900 bg-gradient-to-tr from-orange-500 to-orange-500 z-20 shadow-lg" />
+              <div className="h-10 w-10 rounded-full border-2 border-zinc-900 bg-gradient-to-tr from-amber-500 to-teal-500 z-10 shadow-lg" />
             </div>
           </motion.div>
 
@@ -475,7 +478,7 @@ export default function LandingPage() {
       </section>
 
       {/* CALL TO ACTION BOTTOM */}
-      <section className="relative w-full py-32 mt-16 border-t border-white/5 bg-gradient-to-b from-[#050505] to-indigo-950/20 text-center px-6 overflow-hidden">
+      <section className="relative w-full py-32 mt-16 border-t border-white/5 bg-gradient-to-b from-[#050505] to-orange-950/20 text-center px-6 overflow-hidden">
          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
          <div className="relative z-10 max-w-3xl mx-auto space-y-8 flex flex-col items-center">
             <div className="p-3 bg-white/5 rounded-2xl border border-white/10 mb-2">

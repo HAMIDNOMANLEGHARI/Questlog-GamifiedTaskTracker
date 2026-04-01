@@ -80,7 +80,7 @@ export default function JoinByInvitePage() {
     <div className="flex flex-col items-center justify-center h-[60vh] text-center space-y-6 max-w-md mx-auto px-4">
       {status === 'loading' && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-          <Loader2 className="w-16 h-16 animate-spin text-indigo-500 mx-auto" />
+          <Loader2 className="w-16 h-16 animate-spin text-orange-500 mx-auto" />
           <p className="text-lg font-bold text-zinc-500">Joining group...</p>
         </motion.div>
       )}
@@ -95,13 +95,13 @@ export default function JoinByInvitePage() {
             )}
           </div>
           <h1 className="text-2xl font-black">{community.name}</h1>
-          <Loader2 className="w-6 h-6 animate-spin text-indigo-500 mx-auto" />
+          <Loader2 className="w-6 h-6 animate-spin text-orange-500 mx-auto" />
         </motion.div>
       )}
 
       {status === 'joined' && community && (
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
-          <CheckCircle2 className="w-20 h-20 text-emerald-500 mx-auto" />
+          <CheckCircle2 className="w-20 h-20 text-amber-500 mx-auto" />
           <div className="text-5xl">
             {community.avatar_emoji.startsWith('http') ? (
               <img src={community.avatar_emoji} alt="" className="w-16 h-16 rounded-2xl object-cover shadow-lg mx-auto" />
@@ -112,7 +112,7 @@ export default function JoinByInvitePage() {
           <h1 className="text-2xl font-black">{community.name}</h1>
           <p className="text-zinc-500">You&apos;re now a member!</p>
           <button onClick={() => router.push(`/dashboard/community/${community.id}`)}
-            className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all">
+            className="px-8 py-3 bg-gradient-to-r from-orange-600 to-orange-600 text-white rounded-xl font-bold shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all">
             Open Group
           </button>
         </motion.div>
@@ -120,11 +120,11 @@ export default function JoinByInvitePage() {
 
       {status === 'already' && community && (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-          <Users className="w-16 h-16 text-indigo-500 mx-auto" />
+          <Users className="w-16 h-16 text-orange-500 mx-auto" />
           <h1 className="text-2xl font-black">{community.name}</h1>
           <p className="text-zinc-500">You&apos;re already a member of this group!</p>
           <button onClick={() => router.push(`/dashboard/community/${community.id}`)}
-            className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-500/25 transition-all">
+            className="px-8 py-3 bg-gradient-to-r from-orange-600 to-orange-600 text-white rounded-xl font-bold shadow-lg shadow-orange-500/25 transition-all">
             Go to Group
           </button>
         </motion.div>

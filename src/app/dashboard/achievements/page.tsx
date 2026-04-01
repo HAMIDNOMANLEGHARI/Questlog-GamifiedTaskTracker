@@ -74,7 +74,7 @@ export default function AchievementsPage() {
 
       <div className="grid gap-6 md:grid-cols-3">
         {/* Summary Card */}
-        <div className="px-6 py-8 rounded-2xl bg-gradient-to-br from-indigo-900 to-violet-900 text-white shadow-xl md:col-span-3 flex flex-col md:flex-row items-center gap-8 border border-white/10">
+        <div className="px-6 py-8 rounded-2xl bg-gradient-to-br from-orange-900 to-violet-900 text-white shadow-xl md:col-span-3 flex flex-col md:flex-row items-center gap-8 border border-white/10">
           <div className="h-32 w-32 shrink-0 rounded-full border-4 border-white/20 bg-white/10 flex items-center justify-center text-5xl font-bold shadow-inner relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
             <span className="relative z-10">{gamification?.level || 1}</span>

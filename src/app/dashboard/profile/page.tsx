@@ -177,7 +177,7 @@ export default function ProfilePage() {
         className="relative overflow-hidden rounded-[2rem] p-8 text-white shadow-2xl"
       >
         {/* Animated Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-600 to-pink-500 opacity-90" />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 mix-blend-overlay" />
         
         <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
@@ -219,7 +219,7 @@ export default function ProfilePage() {
                 onClick={() => setModalConfig({ isOpen: true, title: 'Followers', userIds: followersList })}
                 className="flex flex-col items-center md:items-start group cursor-pointer" title="Players following you"
               >
-                <span className="text-2xl font-black leading-none text-white group-hover:text-indigo-300 transition-colors">{followersList.length}</span>
+                <span className="text-2xl font-black leading-none text-white group-hover:text-orange-300 transition-colors">{followersList.length}</span>
                 <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">Followers</span>
               </div>
               <div className="w-px h-8 bg-white/20"></div>
@@ -267,14 +267,14 @@ export default function ProfilePage() {
           className="p-8 rounded-[2rem] glass-panel shadow-xl space-y-5"
         >
           <h2 className="text-xl font-bold tracking-tight text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
-            <Users className="h-5 w-5 text-indigo-500" /> Your Groups
+            <Users className="h-5 w-5 text-orange-500" /> Your Groups
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {myGuilds.map((g) => (
               <div
                 key={g.community_id}
                 onClick={() => router.push(`/dashboard/community/${g.community_id}`)}
-                className="flex items-center gap-3 p-4 rounded-xl glass-card hover:border-indigo-300 dark:hover:border-indigo-700 cursor-pointer transition-all hover:shadow-md"
+                className="flex items-center gap-3 p-4 rounded-xl glass-card hover:border-orange-300 dark:hover:border-orange-700 cursor-pointer transition-all hover:shadow-md"
               >
                 <div className="text-2xl shrink-0">
                   {g.sub_communities.avatar_emoji.startsWith('http') ? (
@@ -349,7 +349,7 @@ export default function ProfilePage() {
                     !isUnlocked
                       ? 'opacity-40 grayscale cursor-not-allowed border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800/50'
                       : avatarUrl === item.emoji
-                        ? 'bg-indigo-100 border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:scale-110'
+                        ? 'bg-orange-100 border-orange-500 shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:scale-110'
                         : 'glass-input hover:scale-110'
                   }`}
                   title={isUnlocked ? item.emoji : `Unlock at Level ${item.levelReq} (The Vault)`}
@@ -365,7 +365,7 @@ export default function ProfilePage() {
             })}
           </div>
           <div className="flex items-center gap-4">
-            <label className="flex items-center justify-center px-4 py-2.5 bg-white dark:bg-zinc-800 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl cursor-pointer hover:border-indigo-500 hover:text-indigo-600 transition-colors text-sm font-bold text-zinc-600 dark:text-zinc-400 shadow-sm">
+            <label className="flex items-center justify-center px-4 py-2.5 bg-white dark:bg-zinc-800 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl cursor-pointer hover:border-orange-500 hover:text-orange-600 transition-colors text-sm font-bold text-zinc-600 dark:text-zinc-400 shadow-sm">
               {isUploadingAvatar ? <Loader2 className="w-4 h-4 animate-spin mr-2"/> : <Upload className="w-4 h-4 mr-2"/>}
               {isUploadingAvatar ? 'Uploading...' : 'Custom Image'}
               <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} disabled={isUploadingAvatar} />
@@ -380,7 +380,7 @@ export default function ProfilePage() {
 
         <div className="pt-6 border-t border-zinc-200 dark:border-zinc-800">
           <h2 className="text-xl font-bold tracking-tight mb-6 text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
-            <Palette className="h-5 w-5 text-indigo-500" /> Aesthetic Theme
+            <Palette className="h-5 w-5 text-orange-500" /> Aesthetic Theme
           </h2>
           
           <div className="flex gap-4">
@@ -394,7 +394,7 @@ export default function ProfilePage() {
 
                 className={`flex-1 capitalize py-3 px-4 rounded-xl border-2 font-bold transition-all ${
                   theme === t 
-                    ? 'bg-indigo-50 border-indigo-500 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.2)]' 
+                    ? 'bg-orange-50 border-orange-500 text-orange-600 dark:bg-orange-500/10 dark:text-orange-400 shadow-[0_0_15px_rgba(99,102,241,0.2)]' 
                     : 'bg-white border-zinc-200 text-zinc-500 hover:border-zinc-300 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:border-zinc-700'
                 }`}
               >
@@ -409,7 +409,7 @@ export default function ProfilePage() {
             <motion.span 
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-sm text-emerald-500 font-bold bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1.5 rounded-lg"
+              className="text-sm text-amber-500 font-bold bg-emerald-50 dark:bg-amber-500/10 px-3 py-1.5 rounded-lg"
             >
               {success}
             </motion.span>
@@ -419,7 +419,7 @@ export default function ProfilePage() {
             whileTap={!isSaving ? { scale: 0.95 } : {}}
             type="submit"
             disabled={isSaving}
-            className="flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3.5 rounded-xl font-bold shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="flex items-center gap-2 bg-gradient-to-r from-orange-600 to-orange-600 text-white px-8 py-3.5 rounded-xl font-bold shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {isSaving ? <Loader2 className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />}
             Save Loadout

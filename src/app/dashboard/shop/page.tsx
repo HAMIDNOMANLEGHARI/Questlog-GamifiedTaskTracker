@@ -80,8 +80,8 @@ export default function ShopPage() {
               className={`relative overflow-hidden group rounded-3xl border-2 transition-all p-6 flex flex-col items-center justify-center text-center ${
                 isUnlocked 
                   ? equipped 
-                    ? 'bg-indigo-50 border-indigo-500 dark:bg-indigo-500/10 dark:border-indigo-500 shadow-[0_0_30px_rgba(99,102,241,0.2)]'
-                    : 'glass-card hover:border-indigo-300 dark:hover:border-indigo-700'
+                    ? 'bg-orange-50 border-orange-500 dark:bg-orange-500/10 dark:border-orange-500 shadow-[0_0_30px_rgba(99,102,241,0.2)]'
+                    : 'glass-card hover:border-orange-300 dark:hover:border-orange-700'
                   : 'glass-panel opacity-70 grayscale'
               }`}
             >
@@ -100,7 +100,7 @@ export default function ShopPage() {
                   <div className="text-6xl drop-shadow-2xl hover:scale-110 transition-transform">{item.emoji}</div>
                 )}
                 {type === 'titles' && (
-                  <div className="px-5 py-2.5 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 text-indigo-700 dark:text-indigo-300 rounded-xl text-sm font-black tracking-widest uppercase shadow-sm border border-indigo-200 dark:border-indigo-800">
+                  <div className="px-5 py-2.5 bg-gradient-to-r from-orange-100 to-orange-100 dark:from-orange-900/40 dark:to-orange-900/40 text-orange-700 dark:text-orange-300 rounded-xl text-sm font-black tracking-widest uppercase shadow-sm border border-orange-200 dark:border-orange-800">
                     {item.name}
                   </div>
                 )}
@@ -123,7 +123,7 @@ export default function ShopPage() {
                     !isUnlocked
                       ? 'bg-zinc-200 dark:bg-zinc-800 text-zinc-400 cursor-not-allowed'
                       : equipped
-                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
+                        ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30'
                         : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 active:scale-95'
                   }`}
                 >
@@ -147,7 +147,7 @@ export default function ShopPage() {
 
   return (
     <div className="space-y-8 pb-12 max-w-6xl mx-auto">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 bg-gradient-to-r from-indigo-600 to-purple-600 p-8 rounded-[2rem] text-white shadow-2xl relative overflow-hidden">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 bg-gradient-to-r from-orange-600 to-orange-600 p-8 rounded-[2rem] text-white shadow-2xl relative overflow-hidden">
         {/* Decorative Background blur */}
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 blur-[50px] rounded-full pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-black/20 blur-[60px] rounded-full pointer-events-none" />
@@ -159,7 +159,7 @@ export default function ShopPage() {
           </div>
           <h1 className="text-4xl md:text-5xl font-black tracking-tight">
             Level up. Unlock. <br/>
-            <span className="text-indigo-200">Flex.</span>
+            <span className="text-orange-200">Flex.</span>
           </h1>
         </div>
 
@@ -177,7 +177,7 @@ export default function ShopPage() {
             )}
           </div>
           <div>
-            <div className="text-xs font-black text-indigo-300 tracking-wider uppercase mb-1 drop-shadow-md">
+            <div className="text-xs font-black text-orange-300 tracking-wider uppercase mb-1 drop-shadow-md">
               Level {level} • {user?.title || 'Novice'}
             </div>
             <div className="font-bold text-lg text-white drop-shadow-lg">{user?.name || 'Gamer'}</div>

@@ -149,13 +149,13 @@ export function GlobalTavern() {
       {/* Header */}
       <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-black/20 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl">
+          <div className="p-2 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-xl">
             <MessageSquare className="h-5 w-5" />
           </div>
           <div>
             <h2 className="font-bold text-zinc-900 dark:text-zinc-100">Global Tavern</h2>
             <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Live Area
+              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" /> Live Area
             </p>
           </div>
         </div>
@@ -202,14 +202,14 @@ export function GlobalTavern() {
                 <div className={`flex flex-col ${isMe ? 'items-end' : 'items-start'}`}>
                   <div className={`flex items-baseline gap-2 mb-1`}>
                     <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">{msg.users?.name || msg.users?.email?.split('@')[0]}</span>
-                    <span className={`text-[9px] font-black uppercase tracking-wider ${isMe ? 'text-indigo-400' : 'text-zinc-500 dark:text-zinc-400'}`}>
+                    <span className={`text-[9px] font-black uppercase tracking-wider ${isMe ? 'text-orange-400' : 'text-zinc-500 dark:text-zinc-400'}`}>
                       {msg.users?.title || 'Novice'}
                     </span>
                   </div>
                   
                   <div className={`px-4 py-2.5 rounded-2xl text-sm relative ${
                     isMe 
-                    ? 'bg-indigo-600 text-white rounded-tr-sm shadow-md shadow-indigo-600/20' 
+                    ? 'bg-orange-600 text-white rounded-tr-sm shadow-md shadow-orange-600/20' 
                     : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 rounded-tl-sm border border-zinc-200 dark:border-zinc-700'
                   }`}>
                     {msg.content}
@@ -260,7 +260,7 @@ export function GlobalTavern() {
           <button 
             type="submit" 
             disabled={!newMessage.trim() || !user || isSending}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:bg-zinc-400 transition-colors"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:bg-zinc-400 transition-colors"
           >
             {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
           </button>

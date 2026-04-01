@@ -293,7 +293,7 @@ export function GroupChat({ communityId }: GroupChatProps) {
                   {/* Bubble */}
                   <div className={`max-w-[75%] group relative ${isMe ? 'items-end' : 'items-start'}`}>
                     {!isMe && (
-                      <p className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 mb-0.5 px-2">{msg.user_name}</p>
+                      <p className="text-[10px] font-bold text-orange-600 dark:text-orange-400 mb-0.5 px-2">{msg.user_name}</p>
                     )}
                     <div
                       className={`relative px-3 py-2 rounded-2xl text-sm shadow-sm ${
@@ -326,7 +326,7 @@ export function GroupChat({ communityId }: GroupChatProps) {
                             onClick={(e) => { e.stopPropagation(); handleReaction(msg.id, emoji); }}
                             className={`flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-xs border transition-all ${
                               users.includes(user?.id || '')
-                                ? 'bg-indigo-100 dark:bg-indigo-900/30 border-indigo-300 dark:border-indigo-700'
+                                ? 'bg-orange-100 dark:bg-orange-900/30 border-orange-300 dark:border-orange-700'
                                 : 'bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700'
                             }`}
                           >
@@ -397,7 +397,7 @@ export function GroupChat({ communityId }: GroupChatProps) {
         <button
           type="button"
           onClick={(e) => { e.stopPropagation(); setShowEmojiPicker(!showEmojiPicker); }}
-          className={`p-2.5 rounded-full transition-colors shrink-0 ${showEmojiPicker ? 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600' : 'hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400'}`}
+          className={`p-2.5 rounded-full transition-colors shrink-0 ${showEmojiPicker ? 'bg-orange-100 dark:bg-orange-900/30 text-orange-600' : 'hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400'}`}
         >
           <Smile className="w-5 h-5" />
         </button>
@@ -408,12 +408,12 @@ export function GroupChat({ communityId }: GroupChatProps) {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type a message..."
           maxLength={500}
-          className="flex-1 px-4 py-2.5 rounded-full glass-input text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="flex-1 px-4 py-2.5 rounded-full glass-input text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
         />
         <button
           type="submit"
           disabled={!newMessage.trim() || isSending}
-          className="p-2.5 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shrink-0"
+          className="p-2.5 bg-amber-500 text-white rounded-full hover:bg-emerald-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shrink-0"
         >
           {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
         </button>

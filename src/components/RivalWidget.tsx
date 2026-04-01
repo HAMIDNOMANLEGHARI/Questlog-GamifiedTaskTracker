@@ -128,18 +128,18 @@ export function RivalWidget() {
                 className="bg-zinc-800/50 backdrop-blur-md border border-zinc-700/50 rounded-2xl p-6 relative overflow-hidden"
               >
                 {/* Winner Glow */}
-                {isWinning && <div className="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />}
+                {isWinning && <div className="absolute -top-10 -right-10 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl pointer-events-none" />}
                 {!isWinning && <div className="absolute -top-10 -left-10 w-32 h-32 bg-red-500/20 rounded-full blur-3xl pointer-events-none" />}
 
                 <div className="flex justify-between items-end mb-6">
                   <div className="text-center w-1/3">
                     <div className="text-sm font-bold text-white mb-1 truncate">You</div>
-                    <div className="text-2xl font-black text-indigo-400">{myXp}</div>
+                    <div className="text-2xl font-black text-orange-400">{myXp}</div>
                     <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">XP</div>
                   </div>
                   
                   <div className="text-center flex flex-col items-center justify-center pb-2 w-1/3">
-                    <Zap className={`w-8 h-8 ${isWinning ? 'text-indigo-500' : 'text-red-500'} mb-1`} />
+                    <Zap className={`w-8 h-8 ${isWinning ? 'text-orange-500' : 'text-red-500'} mb-1`} />
                     <div className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
                       {isWinning ? `LEADS BY ${xpDiff}` : `TRAILS BY ${xpDiff}`}
                     </div>
@@ -158,7 +158,7 @@ export function RivalWidget() {
                     <motion.div 
                        initial={{ width: 0 }}
                        animate={{ width: `${myPercent}%` }}
-                       className="h-full bg-gradient-to-l from-indigo-500 to-blue-600 rounded-full"
+                       className="h-full bg-gradient-to-l from-orange-500 to-blue-600 rounded-full"
                     />
                   </div>
                   

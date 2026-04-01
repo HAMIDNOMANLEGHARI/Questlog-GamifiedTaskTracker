@@ -71,7 +71,7 @@ export function PlayerSearch() {
         </div>
         <input
           type="text"
-          className="w-full bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-sm rounded-xl pl-9 pr-4 py-2 text-zinc-900 dark:text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+          className="w-full bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-sm rounded-xl pl-9 pr-4 py-2 text-zinc-900 dark:text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
           placeholder="Search gamers..."
           value={query}
           onChange={(e) => {

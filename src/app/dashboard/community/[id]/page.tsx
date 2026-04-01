@@ -355,7 +355,7 @@ export default function CommunityDetailPage() {
       </button>
 
       {/* Community Header */}
-      <div className="relative overflow-hidden rounded-[2rem] p-8 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white shadow-2xl">
+      <div className="relative overflow-hidden rounded-[2rem] p-8 bg-gradient-to-br from-orange-600 via-orange-600 to-pink-500 text-white shadow-2xl">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 mix-blend-overlay" />
         <div className="relative z-10 flex flex-col md:flex-row items-center gap-6">
           <div className="text-7xl shrink-0">
@@ -460,7 +460,7 @@ export default function CommunityDetailPage() {
                     <p className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">{member.users.title || 'Novice'}</p>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="font-mono font-bold text-sm text-indigo-600 dark:text-indigo-400">{member.community_xp}</p>
+                    <p className="font-mono font-bold text-sm text-orange-600 dark:text-orange-400">{member.community_xp}</p>
                     <p className="text-[9px] text-zinc-400 font-bold uppercase">XP</p>
                   </div>
                 </motion.div>
@@ -520,7 +520,7 @@ export default function CommunityDetailPage() {
                         <p className="text-xs text-zinc-500">By: {assignedMember?.users.name || 'Unknown'} • +{task.xp_reward} XP</p>
                       </div>
                       <div className="flex gap-2 shrink-0">
-                        <button onClick={() => handleApproveTask(task)} className="px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-sm font-bold hover:bg-emerald-600 transition-colors">Approve</button>
+                        <button onClick={() => handleApproveTask(task)} className="px-3 py-1.5 bg-amber-500 text-white rounded-lg text-sm font-bold hover:bg-emerald-600 transition-colors">Approve</button>
                         <button onClick={() => handleRejectTask(task.id)} className="px-3 py-1.5 bg-zinc-200 dark:bg-zinc-700 rounded-lg text-sm font-bold hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">Reject</button>
                       </div>
                     </motion.div>
@@ -534,7 +534,7 @@ export default function CommunityDetailPage() {
           <div className="glass-card rounded-2xl overflow-hidden">
             <div className="p-5 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
               <h2 className="font-bold text-lg flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-indigo-500" /> Group Tasks
+                <CheckCircle2 className="w-5 h-5 text-orange-500" /> Group Tasks
               </h2>
               <span className="text-sm text-zinc-500 font-medium">{tasks.length} total</span>
             </div>
@@ -553,7 +553,7 @@ export default function CommunityDetailPage() {
                   <div key={task.id} className={`p-4 flex items-center gap-4 ${task.status === 'approved' ? 'opacity-60' : ''}`}>
                     <div className="shrink-0">
                       {task.status === 'approved' ? (
-                        <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                        <CheckCircle2 className="w-5 h-5 text-amber-500" />
                       ) : task.status === 'pending_approval' ? (
                         <Clock className="w-5 h-5 text-yellow-500" />
                       ) : task.status === 'rejected' ? (
@@ -566,14 +566,14 @@ export default function CommunityDetailPage() {
                       <p className={`font-bold truncate ${task.status === 'approved' ? 'line-through text-zinc-500' : ''}`}>{task.title}</p>
                       <div className="flex items-center gap-2 mt-1 flex-wrap">
                         <span className="text-xs text-zinc-500">→ {assignedMember?.users.name || 'Unknown'}</span>
-                        <span className="text-xs font-bold text-indigo-500">+{task.xp_reward} XP</span>
+                        <span className="text-xs font-bold text-orange-500">+{task.xp_reward} XP</span>
                         <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${statusConfig[task.status].color}`}>
                           {statusConfig[task.status].label}
                         </span>
                       </div>
                     </div>
                     {isMyTask && task.status === 'pending' && (
-                      <button onClick={() => handleMarkDone(task.id)} className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-bold hover:bg-indigo-700 transition-colors shrink-0">
+                      <button onClick={() => handleMarkDone(task.id)} className="px-4 py-2 bg-orange-600 text-white rounded-xl text-sm font-bold hover:bg-orange-700 transition-colors shrink-0">
                         Mark Done
                       </button>
                     )}
@@ -612,7 +612,7 @@ export default function CommunityDetailPage() {
                   <p className="text-xs text-zinc-500">Wants to join</p>
                 </div>
                 <div className="flex gap-2 shrink-0">
-                  <button onClick={() => handleApproveJoin(req.id, req.user_id)} className="px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-sm font-bold hover:bg-emerald-600 transition-colors">Accept</button>
+                  <button onClick={() => handleApproveJoin(req.id, req.user_id)} className="px-3 py-1.5 bg-amber-500 text-white rounded-lg text-sm font-bold hover:bg-emerald-600 transition-colors">Accept</button>
                   <button onClick={() => handleRejectJoin(req.id)} className="px-3 py-1.5 bg-zinc-200 dark:bg-zinc-700 rounded-lg text-sm font-bold hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">Decline</button>
                 </div>
               </div>
@@ -725,7 +725,7 @@ function AddMemberModal({ isOpen, onClose, communityId, existingMemberIds, onAdd
                   value={query}
                   onChange={e => setQuery(e.target.value)}
                   placeholder="Search by username..."
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
             </div>
@@ -749,7 +749,7 @@ function AddMemberModal({ isOpen, onClose, communityId, existingMemberIds, onAdd
                     <button
                       onClick={() => handleAdd(u.id)}
                       disabled={adding === u.id}
-                      className="px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-bold hover:bg-indigo-700 disabled:opacity-50 transition-colors"
+                      className="px-3 py-1.5 bg-orange-600 text-white rounded-lg text-xs font-bold hover:bg-orange-700 disabled:opacity-50 transition-colors"
                     >
                       {adding === u.id ? <Loader2 className="w-3 h-3 animate-spin" /> : 'Add'}
                     </button>
@@ -843,20 +843,20 @@ function AssignTaskModal({ isOpen, onClose, communityId, members, assignedBy, on
               <div className="space-y-2">
                 <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Task Title</label>
                 <input type="text" required value={title} onChange={e => setTitle(e.target.value)} maxLength={100}
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium"
+                  className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 font-medium"
                   placeholder="e.g., Complete chapter 5 exercises" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Description <span className="text-zinc-400 normal-case font-normal">(optional)</span></label>
                 <textarea value={description} onChange={e => setDescription(e.target.value)} rows={2} maxLength={300}
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 font-medium resize-none"
                   placeholder="Any extra details..." />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Assign To</label>
                   <select required value={assignTo} onChange={e => setAssignTo(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 font-medium text-sm">
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-orange-500/20 font-medium text-sm">
                     <option value="">Select member</option>
                     <option value="__all__">⚡ All Members ({members.length})</option>
                     {members.map(m => (
@@ -867,11 +867,11 @@ function AssignTaskModal({ isOpen, onClose, communityId, members, assignedBy, on
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">XP Reward</label>
                   <input type="number" min={5} max={500} value={xpReward} onChange={e => setXpReward(Number(e.target.value))}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 font-medium" />
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-orange-500/20 font-medium" />
                 </div>
               </div>
               <button type="submit" disabled={creating || !title.trim() || !assignTo}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-indigo-500/30 disabled:opacity-50 transition-all">
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600 to-orange-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-orange-500/30 disabled:opacity-50 transition-all">
                 {creating ? <Loader2 className="w-5 h-5 animate-spin" /> : <Plus className="w-5 h-5" />}
                 {creating ? 'Assigning...' : 'Assign Quest'}
               </button>

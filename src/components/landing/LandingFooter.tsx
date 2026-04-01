@@ -11,7 +11,7 @@ export function LandingFooter() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           <div className="col-span-2 md:col-span-2 space-y-4">
             <div className="flex items-center gap-2 font-bold text-lg text-white">
-              <Sparkles className="h-5 w-5 text-indigo-500" />
+              <Sparkles className="h-5 w-5 text-orange-500" />
               <span>QuestLog</span>
             </div>
             <p className="text-zinc-500 text-sm max-w-xs">

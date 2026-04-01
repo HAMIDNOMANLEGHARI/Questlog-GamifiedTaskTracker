@@ -10,28 +10,26 @@
 
 @layer utilities {
   .deep-space-bg {
-    background-color: #000000;
+    background-color: #121214;
   }
 
-  /* Twitch/TikTok Style "Glitch Cards" */
+  /* Sunset Ember Style Cards */
   .glass-card {
-    @apply bg-[#0A0A0A] border-[2px] border-[#222222] rounded-xl transition-all duration-200;
+    @apply bg-[#1C1C1F] border border-white/5 rounded-2xl transition-all duration-300;
   }
   .glass-card:hover {
-    @apply border-[#00F0FF] shadow-[4px_4px_0_0_#FF00FF];
-    transform: translate(-2px, -2px);
+    @apply border-orange-500/30 shadow-[0_4px_30px_rgba(255,107,0,0.15)];
   }
   
   .glass-panel {
-    @apply bg-[#111111] border-[2px] border-[#222222] rounded-xl;
+    @apply bg-[#222226] border border-white/5 rounded-2xl;
   }
   .glass-panel:hover {
-    @apply border-[#FF00FF] shadow-[4px_4px_0_0_#00F0FF];
-    transform: translate(-2px, -2px);
+    @apply border-orange-500/20 shadow-[0_4px_20px_rgba(255,107,0,0.1)];
   }
 
-  /* Inputs get chaotic Focus States */
+  /* Warm glowing inputs */
   .glass-input {
-    @apply bg-[#050505] border-[2px] border-[#333333] rounded-lg focus:outline-none focus:border-[#00F0FF] focus:shadow-[4px_4px_0_0_#FF00FF] transition-all;
+    @apply bg-[#151517] border border-white/10 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 shadow-inner transition-all text-white;
   }
 }

@@ -23,7 +23,7 @@ export function LandingHeader() {
     >
       <div className="max-w-7xl mx-auto px-6 w-full flex items-center justify-between">
         <div className="flex items-center gap-2 cursor-pointer font-bold text-lg text-white" onClick={scrollToTop}>
-          <Sparkles className="h-5 w-5 text-indigo-500" />
+          <Sparkles className="h-5 w-5 text-orange-500" />
           <span>QuestLog</span>
         </div>
 

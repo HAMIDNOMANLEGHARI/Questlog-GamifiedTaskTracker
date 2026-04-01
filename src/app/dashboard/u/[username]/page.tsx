@@ -236,7 +236,7 @@ export default function PublicProfilePage() {
       {/* Banner & Profile Setup */}
       <div className="bg-white dark:bg-zinc-900 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden">
         {/* Abstract Banner Layer */}
-        <div className="h-48 bg-gradient-to-r from-blue-600 to-indigo-600 relative overflow-hidden flex items-center justify-center">
+        <div className="h-48 bg-gradient-to-r from-blue-600 to-orange-600 relative overflow-hidden flex items-center justify-center">
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 Mix-blend-overlay"></div>
         </div>
 
@@ -265,7 +265,7 @@ export default function PublicProfilePage() {
                   onClick={() => setModalConfig({ isOpen: true, title: 'Followers', userIds: followersList })}
                   className="flex flex-col cursor-pointer group"
                 >
-                  <span className="text-2xl font-black leading-none group-hover:text-indigo-400 transition-colors">{followersList.length}</span>
+                  <span className="text-2xl font-black leading-none group-hover:text-orange-400 transition-colors">{followersList.length}</span>
                   <span className="text-xs uppercase font-bold text-zinc-400 group-hover:text-zinc-300">Followers</span>
                 </div>
                 <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800"></div>
@@ -303,7 +303,7 @@ export default function PublicProfilePage() {
                   className={`px-8 py-3 rounded-xl font-bold transition-all shadow-md focus:scale-95 flex items-center justify-center gap-2 ${
                     isFollowing 
                     ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700 hover:bg-red-50 hover:text-red-500 hover:border-red-200 dark:hover:border-red-900/50' 
-                    : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-indigo-500/25'
+                    : 'bg-orange-600 text-white hover:bg-orange-700 hover:shadow-orange-500/25'
                   }`}
                 >
                   {isFollowing ? 'Following' : 'Follow Player'}
@@ -332,7 +332,7 @@ export default function PublicProfilePage() {
           <div className="space-y-4">
             <div>
               <p className="text-xs text-zinc-400 mb-1 font-semibold">Title Status</p>
-              <div className="inline-block px-3 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider text-sm rounded-lg border border-indigo-100 dark:border-indigo-800/50">
+              <div className="inline-block px-3 py-1.5 bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 font-bold uppercase tracking-wider text-sm rounded-lg border border-orange-100 dark:border-orange-800/50">
                 {profile.title || 'Novice'}
               </div>
             </div>
@@ -359,7 +359,7 @@ export default function PublicProfilePage() {
       {guilds.length > 0 && (
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm p-6 lg:p-8">
           <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <Users className="w-6 h-6 text-indigo-500" />
+            <Users className="w-6 h-6 text-orange-500" />
             Groups
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -367,7 +367,7 @@ export default function PublicProfilePage() {
               <div
                 key={g.community_id}
                 onClick={() => router.push(`/dashboard/community/${g.community_id}`)}
-                className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 cursor-pointer transition-all"
+                className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 hover:border-orange-300 dark:hover:border-orange-700 cursor-pointer transition-all"
               >
                 <div className="text-2xl shrink-0">
                   {g.sub_communities.avatar_emoji.startsWith('http') ? (
@@ -391,7 +391,7 @@ export default function PublicProfilePage() {
       {/* Task History Section */}
       <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm p-6 lg:p-8 mt-6">
         <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-          <CheckCircle2 className="w-6 h-6 text-indigo-500" />
+          <CheckCircle2 className="w-6 h-6 text-orange-500" />
           Recent Activity
         </h2>
 
@@ -412,7 +412,7 @@ export default function PublicProfilePage() {
               >
                 <div className="mt-0.5 shrink-0">
                   {task.status === 'completed' ? (
-                     <CheckCircle2 className="w-6 h-6 text-emerald-500 drop-shadow-sm" />
+                     <CheckCircle2 className="w-6 h-6 text-amber-500 drop-shadow-sm" />
                   ) : (
                      <Circle className="w-6 h-6 text-zinc-400" />
                   )}

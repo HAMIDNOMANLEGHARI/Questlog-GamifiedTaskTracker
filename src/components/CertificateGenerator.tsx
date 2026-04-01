@@ -182,7 +182,7 @@ export function CertificateGenerator() {
              <h3 className="font-bold text-sm tracking-tight">{activeCert.title}</h3>
              <p className="text-xs text-zinc-500 font-medium">
                {isUnlocked ? (
-                 <span className="text-emerald-500">Unlocked</span>
+                 <span className="text-amber-500">Unlocked</span>
                ) : (
                  <span className="text-rose-500">Unlocks at Level {activeCert.minLevel}</span>
                )}
@@ -201,7 +201,7 @@ export function CertificateGenerator() {
         <button 
           onClick={handleDownloadPdf}
           disabled={isDownloading || !isUnlocked}
-          className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-2.5 rounded-xl font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20"
+          className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-orange-600 hover:from-blue-700 hover:to-orange-700 text-white px-6 py-2.5 rounded-xl font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20"
         >
           {isDownloading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
           {isDownloading ? 'Generating HQ PDF...' : 'Download HD PDF'}

@@ -219,7 +219,7 @@ export function TaskBoard() {
                   className="flex-shrink-0 text-zinc-400 hover:text-blue-500 transition-colors"
                 >
                   {task.status === 'completed' 
-                    ? <CheckCircle2 className="h-6 w-6 text-emerald-500" /> 
+                    ? <CheckCircle2 className="h-6 w-6 text-amber-500" /> 
                     : <Circle className="h-6 w-6" />
                   }
                 </button>

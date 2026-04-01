@@ -271,7 +271,7 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                     activeTab === tab.id
-                      ? tab.id === 'danger' ? 'bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400' : 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400'
+                      ? tab.id === 'danger' ? 'bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400' : 'bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400'
                       : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                   }`}
                 >
@@ -289,11 +289,11 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
                     <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Group Photo</label>
                     <div className="flex gap-2 mb-3">
                       <button type="button" onClick={() => setUseCustomImage(false)}
-                        className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all ${!useCustomImage ? 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-2 border-indigo-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border-2 border-transparent'}`}>
+                        className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all ${!useCustomImage ? 'bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 border-2 border-orange-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border-2 border-transparent'}`}>
                         🎨 Emoji
                       </button>
                       <button type="button" onClick={() => setUseCustomImage(true)}
-                        className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${useCustomImage ? 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-2 border-indigo-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border-2 border-transparent'}`}>
+                        className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${useCustomImage ? 'bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 border-2 border-orange-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border-2 border-transparent'}`}>
                         <ImageIcon className="w-3 h-3" /> Custom
                       </button>
                     </div>
@@ -301,7 +301,7 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
                       <div className="flex flex-wrap gap-2">
                         {EMOJI_OPTIONS.map((e) => (
                           <button key={e} type="button" onClick={() => setAvatarEmoji(e)}
-                            className={`w-10 h-10 text-xl rounded-xl border-2 flex items-center justify-center transition-all hover:scale-110 ${avatarEmoji === e && !useCustomImage ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10' : 'border-zinc-200 dark:border-zinc-700'}`}>
+                            className={`w-10 h-10 text-xl rounded-xl border-2 flex items-center justify-center transition-all hover:scale-110 ${avatarEmoji === e && !useCustomImage ? 'border-orange-500 bg-orange-50 dark:bg-orange-500/10' : 'border-zinc-200 dark:border-zinc-700'}`}>
                             {e}
                           </button>
                         ))}
@@ -310,14 +310,14 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
                       <div className="space-y-3">
                         {customImageUrl ? (
                           <div className="relative group flex justify-center">
-                            <img src={customImageUrl} alt="Group" className="w-20 h-20 rounded-2xl object-cover border-2 border-indigo-500 shadow-lg" />
-                            <button type="button" onClick={() => fileInputRef.current?.click()} className="absolute -bottom-2 right-1/2 translate-x-1/2 p-1.5 bg-indigo-600 text-white rounded-full text-xs shadow-lg">
+                            <img src={customImageUrl} alt="Group" className="w-20 h-20 rounded-2xl object-cover border-2 border-orange-500 shadow-lg" />
+                            <button type="button" onClick={() => fileInputRef.current?.click()} className="absolute -bottom-2 right-1/2 translate-x-1/2 p-1.5 bg-orange-600 text-white rounded-full text-xs shadow-lg">
                               <Upload className="w-3 h-3" />
                             </button>
                           </div>
                         ) : (
                           <button type="button" onClick={() => fileInputRef.current?.click()} disabled={isUploading}
-                            className="w-full py-6 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-2xl flex flex-col items-center gap-2 text-zinc-500 hover:border-indigo-400 hover:text-indigo-500 transition-all cursor-pointer">
+                            className="w-full py-6 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-2xl flex flex-col items-center gap-2 text-zinc-500 hover:border-orange-400 hover:text-orange-500 transition-all cursor-pointer">
                             {isUploading ? <Loader2 className="w-6 h-6 animate-spin" /> : <><Upload className="w-6 h-6" /><span className="text-xs font-bold">Upload image (max 2MB)</span></>}
                           </button>
                         )}
@@ -329,17 +329,17 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Group Name</label>
                     <input type="text" value={name} onChange={e => setName(e.target.value)} maxLength={40}
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium text-sm" />
+                      className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 font-medium text-sm" />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Description</label>
                     <textarea value={description} onChange={e => setDescription(e.target.value)} maxLength={200} rows={3}
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium text-sm resize-none" />
+                      className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 font-medium text-sm resize-none" />
                   </div>
 
                   <button onClick={handleSaveGeneral} disabled={isSaving || !name.trim()}
-                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-indigo-500/25 disabled:opacity-50 transition-all">
+                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600 to-orange-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-orange-500/25 disabled:opacity-50 transition-all">
                     {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                     Save Changes
                   </button>
@@ -375,11 +375,11 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
                     <div className="space-y-4">
                       <div className="p-4 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
                         <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2">Invite Code</p>
-                        <p className="text-2xl font-mono font-black tracking-[0.3em] text-indigo-600 dark:text-indigo-400 text-center">{inviteCode}</p>
+                        <p className="text-2xl font-mono font-black tracking-[0.3em] text-orange-600 dark:text-orange-400 text-center">{inviteCode}</p>
                       </div>
                       <div className="flex gap-3">
                         <button onClick={handleCopyLink}
-                          className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-indigo-500/25 transition-all hover:bg-indigo-700">
+                          className="flex-1 flex items-center justify-center gap-2 bg-orange-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-orange-500/25 transition-all hover:bg-orange-700">
                           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                           {copied ? 'Copied!' : 'Copy Invite Link'}
                         </button>
@@ -391,7 +391,7 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
                     </div>
                   ) : (
                     <button onClick={handleGenerateInvite}
-                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-500/25 transition-all hover:shadow-blue-500/40">
+                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-orange-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-500/25 transition-all hover:shadow-blue-500/40">
                       <Link2 className="w-5 h-5" /> Generate Invite Link
                     </button>
                   )}
