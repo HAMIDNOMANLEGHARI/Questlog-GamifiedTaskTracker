@@ -481,11 +481,12 @@ export default function LandingPage() {
       </section>
 
       {/* CALL TO ACTION BOTTOM */}
-      <section className="relative w-full py-32 mt-16 border-t border-white/5 bg-gradient-to-b from-[#050505] to-orange-950/20 text-center px-6 overflow-hidden">
+      <section className="relative w-full py-32 mt-16 border-t border-white/5 bg-gradient-to-b from-[#050505] to-[#FF4500]/10 text-center px-6 overflow-hidden">
          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
+         <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#FF4500]/20 rounded-full blur-[150px] pointer-events-none" />
          <div className="relative z-10 max-w-3xl mx-auto space-y-8 flex flex-col items-center">
-            <div className="p-3 bg-white/5 rounded-2xl border border-white/10 mb-2">
-              <Target className="h-8 w-8 text-white" />
+            <div className="p-4 bg-orange-500/10 rounded-2xl border border-orange-500/30 mb-2 shadow-[0_0_30px_rgba(255,69,0,0.2)]">
+              <Target className="h-8 w-8 text-orange-500" />
             </div>
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter">Ready to enter the arena?</h2>
             <p className="text-zinc-400 text-lg md:text-xl font-medium max-w-xl mx-auto leading-relaxed">
@@ -493,7 +494,7 @@ export default function LandingPage() {
             </p>
             <button 
               onClick={scrollToTop}
-              className="mt-6 px-10 py-5 bg-white text-black text-sm font-bold uppercase tracking-widest rounded-full hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all duration-300"
+              className="mt-6 px-10 py-5 text-white text-sm font-black uppercase tracking-widest rounded-full transition-all duration-300 bg-gradient-to-r from-[#FF4500] to-[#FF8C00] hover:from-[#E63E00] hover:to-[#E67E00] shadow-[0_0_30px_rgba(255,69,0,0.4)] hover:shadow-[0_0_50px_rgba(255,69,0,0.6)] hover:-translate-y-1"
             >
               Get Started Now
             </button>
