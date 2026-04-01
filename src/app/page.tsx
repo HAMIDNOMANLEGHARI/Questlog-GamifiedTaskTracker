@@ -132,11 +132,11 @@ export default function LandingPage() {
           </p>
 
           <div className="flex items-center gap-6 pt-4 opacity-80">
-            <div className="flex -space-x-3">
-              <div className="h-10 w-10 rounded-full border-2 border-[#050505] bg-gradient-to-tr from-[#2B60FF] to-cyan-400" />
-              <div className="h-10 w-10 rounded-full border-2 border-[#050505] bg-gradient-to-tr from-[#4169E1] to-purple-500" />
-              <div className="h-10 w-10 rounded-full border-2 border-[#050505] bg-gradient-to-tr from-[#1A0B2E] to-blue-900" />
-              <div className="h-10 w-10 rounded-full border-2 border-[#050505] bg-[#161B33] flex items-center justify-center text-xs font-bold">+10k</div>
+            <div className="flex -space-x-4">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" className="h-12 w-12 rounded-full border-2 border-black object-cover" alt="User" />
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" className="h-12 w-12 rounded-full border-2 border-black object-cover" alt="User" />
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" className="h-12 w-12 rounded-full border-2 border-black object-cover" alt="User" />
+              <div className="h-12 w-12 rounded-full border-2 border-black bg-[#FF00FF] flex items-center justify-center text-xs font-black text-black">+10k</div>
             </div>
             <div className="text-sm font-medium text-zinc-400">Join the arena before it&apos;s mainstream.</div>
           </div>
@@ -162,13 +162,13 @@ export default function LandingPage() {
           </motion.div>
 
           {/* Form */}
-          <div className="relative bg-[#0A0D14] border border-[#1C2333] p-8 rounded-[2.5rem] shadow-2xl">
+          <div className="relative glass-card p-8">
             <div className="text-left space-y-2 mb-8">
-              <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2">
-                {isLogin ? 'Hello, Alina' : 'Join the Party.'}
+              <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2 uppercase glitch-text">
+                {isLogin ? 'ENTER THE ARENA' : 'Join the Party.'}
               </h2>
-              <p className="text-sm text-[#2B60FF] font-bold">
-                {isLogin ? 'Be useful right now.' : 'Start your gamified productivity journey.'}
+              <p className="text-sm text-[#00F0FF] font-bold">
+                {isLogin ? 'Destroy your to-do list.' : 'Start your gamified productivity journey.'}
               </p>
             </div>
 
@@ -181,7 +181,7 @@ export default function LandingPage() {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-5 py-4 rounded-2xl border border-[#1C2333] bg-[#040810] focus:border-[#2B60FF] focus:outline-none focus:ring-1 focus:ring-[#2B60FF] transition-all text-white placeholder:text-zinc-600 text-sm font-medium"
+                    className="w-full px-5 py-4 glass-input text-white placeholder:text-zinc-600 text-sm font-medium"
                     placeholder="Enter display name"
                   />
                 </div>
@@ -193,20 +193,20 @@ export default function LandingPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-5 py-4 rounded-2xl border border-[#1C2333] bg-[#040810] focus:border-[#2B60FF] focus:outline-none focus:ring-1 focus:ring-[#2B60FF] transition-all text-white placeholder:text-zinc-600 text-sm font-medium"
+                  className="w-full px-5 py-4 glass-input text-white placeholder:text-zinc-600 text-sm font-medium"
                   placeholder="you@example.com"
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest pl-1">Secret Key</label>
-                <input 
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-5 py-4 rounded-2xl border border-[#1C2333] bg-[#040810] focus:border-[#2B60FF] focus:outline-none focus:ring-1 focus:ring-[#2B60FF] transition-all text-white placeholder:text-zinc-600 text-sm font-medium"
-                  placeholder="••••••••"
-                />
+                  <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest pl-1">Secret Key</label>
+                  <input 
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-5 py-4 glass-input text-white placeholder:text-zinc-600 text-sm font-medium"
+                    placeholder="••••••••"
+                  />
               </div>
 
               {errorMsg && (
@@ -216,7 +216,7 @@ export default function LandingPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full relative flex items-center justify-center gap-2 rounded-2xl px-4 py-4 text-sm font-bold text-white transition-all bg-[#2B60FF] hover:bg-[#1A45CC] shadow-[0_8px_30px_rgba(43,96,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed mt-4 group"
+                className="w-full relative flex items-center justify-center gap-2 rounded-xl px-4 py-4 text-sm font-black text-black uppercase tracking-widest transition-all bg-[#00F0FF] hover:bg-[#FF00FF] hover:text-white border-[2px] border-black shadow-[4px_4px_0_0_#FF00FF] hover:shadow-[4px_4px_0_0_#00F0FF] disabled:opacity-50 disabled:cursor-not-allowed mt-4 group"
               >
                 {isLoading && <Loader2 className="h-4 w-4 animate-spin flex-shrink-0 text-zinc-400" />}
                 {!isLoading && (isLogin ? 'INITIALIZE LOGIN' : 'CREATE CHARACTER')}
