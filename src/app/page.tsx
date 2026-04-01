@@ -265,7 +265,7 @@ export default function LandingPage() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter"
           >
-            Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500">dominate life.</span>
+            Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-orange-400 to-orange-500">dominate life.</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}

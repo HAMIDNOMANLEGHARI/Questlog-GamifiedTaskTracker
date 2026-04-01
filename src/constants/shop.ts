@@ -2,9 +2,9 @@ export const SHOP_ITEMS = {
   themes: [
     { id: 'light', name: 'Light Mode', levelReq: 1, cssClass: 'bg-zinc-100 border-zinc-300' },
     { id: 'dark', name: 'Dark Mode', levelReq: 1, cssClass: 'bg-zinc-900 border-zinc-700' },
-    { id: 'midnight-blue', name: 'Midnight Blue', levelReq: 5, cssClass: 'bg-blue-950 border-blue-800' },
+    { id: 'midnight-blue', name: 'Midnight Blue', levelReq: 5, cssClass: 'bg-orange-950 border-orange-800' },
     { id: 'forest-green', name: 'Forest Green', levelReq: 10, cssClass: 'bg-emerald-950 border-emerald-800' },
-    { id: 'ocean-breeze', name: 'Ocean Breeze', levelReq: 15, cssClass: 'bg-cyan-900 border-cyan-700' },
+    { id: 'ocean-breeze', name: 'Ocean Breeze', levelReq: 15, cssClass: 'bg-orange-900 border-orange-700' },
     { id: 'sunset-orange', name: 'Sunset Orange', levelReq: 20, cssClass: 'bg-orange-900 border-orange-700' },
     { id: 'cyberpunk-neon', name: 'Cyberpunk Neon', levelReq: 30, cssClass: 'bg-fuchsia-900 border-fuchsia-700' },
     { id: 'vaporwave-purple', name: 'Vaporwave Purple', levelReq: 40, cssClass: 'bg-violet-900 border-violet-700' },
@@ -40,6 +40,6 @@ export const SHOP_ITEMS = {
     { id: 'bronze-band', name: 'Bronze Band', levelReq: 10, borderClass: 'border-orange-600/60 shadow-[0_0_20px_rgba(234,88,12,0.4)]' },
     { id: 'silver-glow', name: 'Silver Glow', levelReq: 25, borderClass: 'border-zinc-300/80 shadow-[0_0_25px_rgba(212,212,216,0.6)]' },
     { id: 'gold-aura', name: 'Gold Aura', levelReq: 50, borderClass: 'border-yellow-400 shadow-[0_0_30px_rgba(250,204,21,0.8)]' },
-    { id: 'diamond-plasma', name: 'Diamond Plasma', levelReq: 100, borderClass: 'border-cyan-300 shadow-[0_0_40px_rgba(103,232,249,1)]' },
+    { id: 'diamond-plasma', name: 'Diamond Plasma', levelReq: 100, borderClass: 'border-orange-300 shadow-[0_0_40px_rgba(103,232,249,1)]' },
   ]
 };

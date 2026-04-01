@@ -40,10 +40,10 @@ export default function DashboardPage() {
         {/* Core Stats */}
         <div className="p-6 rounded-2xl glass-card">
           <h3 className="text-sm font-medium text-zinc-500">Current Level</h3>
-          <p className="text-3xl font-bold text-blue-600 mt-2">{gamification?.level || 1}</p>
+          <p className="text-3xl font-bold text-orange-600 mt-2">{gamification?.level || 1}</p>
           <div className="mt-4 h-2 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-blue-500 rounded-full" 
+              className="h-full bg-orange-500 rounded-full" 
               style={{ width: `${(gamification?.xp || 0) % 100}%` }} 
             />
           </div>
@@ -67,7 +67,7 @@ export default function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Quote Plate */}
         <div className="col-span-1 glass-card rounded-2xl p-6 flex flex-col justify-center items-center text-center">
-          <Quote className="h-8 w-8 text-blue-500 mb-4 opacity-50" />
+          <Quote className="h-8 w-8 text-orange-500 mb-4 opacity-50" />
           <p className="text-lg font-medium text-zinc-700 dark:text-zinc-300 italic mb-4">&quot;{quote.text}&quot;</p>
           <p className="text-sm font-bold text-zinc-400">— {quote.author}</p>
         </div>

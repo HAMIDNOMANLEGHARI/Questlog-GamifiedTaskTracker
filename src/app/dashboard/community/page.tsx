@@ -469,7 +469,7 @@ export default function CommunityPage() {
                     key={leader.user_id}
                     onClick={() => router.push(`/dashboard/u/${leader.users.username || 'unknown'}`)}
                     className={`p-4 flex items-center gap-4 cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors ${
-                      user?.id === leader.user_id ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''
+                      user?.id === leader.user_id ? 'bg-orange-50/50 dark:bg-orange-900/10' : ''
                     }`}
                   >
                     <div className="w-8 shrink-0 flex justify-center">
@@ -503,7 +503,7 @@ export default function CommunityPage() {
                     </div>
 
                     <div className="text-right shrink-0">
-                      <p className="font-mono font-bold text-lg text-blue-600 dark:text-blue-400">{leader.xp} XP</p>
+                      <p className="font-mono font-bold text-lg text-orange-600 dark:text-orange-400">{leader.xp} XP</p>
                     </div>
                   </motion.div>
                 ))}

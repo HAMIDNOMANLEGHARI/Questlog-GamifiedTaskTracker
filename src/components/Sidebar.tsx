@@ -33,7 +33,7 @@ export function Sidebar() {
   const sidebarContent = (
     <>
       <div className="p-6">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-violet-600 bg-clip-text text-transparent">
           LevelUp
         </h1>
         <p className="text-sm text-zinc-500 dark:text-zinc-400">Gamified Productivity</p>
@@ -54,7 +54,7 @@ export function Sidebar() {
               className={cn(
                 'flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-200'
+                  ? 'bg-orange-50 text-orange-700 dark:bg-orange-500/10 dark:text-orange-200'
                   : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800/50'
               )}
             >

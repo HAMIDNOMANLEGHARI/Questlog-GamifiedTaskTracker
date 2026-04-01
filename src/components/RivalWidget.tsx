@@ -158,7 +158,7 @@ export function RivalWidget() {
                     <motion.div 
                        initial={{ width: 0 }}
                        animate={{ width: `${myPercent}%` }}
-                       className="h-full bg-gradient-to-l from-orange-500 to-blue-600 rounded-full"
+                       className="h-full bg-gradient-to-l from-orange-500 to-orange-600 rounded-full"
                     />
                   </div>
                   

@@ -368,7 +368,7 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
               {activeTab === 'invite' && (
                 <div className="space-y-5">
                   <div className="flex items-center gap-3 text-zinc-500 mb-1">
-                    <Link2 className="w-5 h-5 text-blue-500" />
+                    <Link2 className="w-5 h-5 text-orange-500" />
                     <p className="text-sm">Generate a shareable invite link anyone can use to join.</p>
                   </div>
                   {inviteCode ? (
@@ -391,7 +391,7 @@ export function GroupSettingsModal({ isOpen, onClose, community, members, curren
                     </div>
                   ) : (
                     <button onClick={handleGenerateInvite}
-                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-orange-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-500/25 transition-all hover:shadow-blue-500/40">
+                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600 to-orange-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-orange-500/25 transition-all hover:shadow-orange-500/40">
                       <Link2 className="w-5 h-5" /> Generate Invite Link
                     </button>
                   )}

@@ -94,16 +94,16 @@ export function SmartQuestGenerator() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-orange-50 dark:from-blue-900/20 dark:to-orange-900/20 rounded-2xl p-6 border border-blue-100 dark:border-blue-900/50 mb-8">
+    <div className="bg-gradient-to-r from-orange-50 to-orange-50 dark:from-orange-900/20 dark:to-orange-900/20 rounded-2xl p-6 border border-orange-100 dark:border-orange-900/50 mb-8">
       <div className="flex items-start gap-4">
-        <div className="p-3 bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-500/20 shrink-0 mt-1">
+        <div className="p-3 bg-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/20 shrink-0 mt-1">
           <Sparkles className="h-6 w-6" />
         </div>
         
         <div className="flex-1 min-w-0 space-y-4">
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-blue-900 dark:text-blue-100">AI Quest Generator</h2>
-            <p className="text-blue-700/80 dark:text-blue-300">Enter a big goal and let our AI break it down into an actionable quest.</p>
+            <h2 className="text-xl font-bold tracking-tight text-orange-900 dark:text-orange-100">AI Quest Generator</h2>
+            <p className="text-orange-700/80 dark:text-orange-300">Enter a big goal and let our AI break it down into an actionable quest.</p>
           </div>
 
           <form onSubmit={handleGenerate} className="flex flex-col sm:flex-row gap-3">
@@ -112,12 +112,12 @@ export function SmartQuestGenerator() {
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
               placeholder="e.g. Learn Next.js or Run a Marathon"
-              className="flex-1 min-w-0 w-full px-4 py-2.5 rounded-lg border-0 ring-1 ring-blue-200 dark:ring-blue-800 bg-white/80 dark:bg-black/50 outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium"
+              className="flex-1 min-w-0 w-full px-4 py-2.5 rounded-lg border-0 ring-1 ring-orange-200 dark:ring-orange-800 bg-white/80 dark:bg-black/50 outline-none focus:ring-2 focus:ring-orange-500 transition-all font-medium"
             />
             <button 
               disabled={isGenerating || !goal.trim()}
               type="submit"
-              className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors disabled:opacity-50 flex justify-center items-center gap-2"
+              className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-semibold transition-colors disabled:opacity-50 flex justify-center items-center gap-2"
             >
               {isGenerating ? <Loader2 className="h-5 w-5 animate-spin" /> : <Target className="h-5 w-5" />}
               Generate
@@ -132,13 +132,13 @@ export function SmartQuestGenerator() {
 
           {generatedTasks.length > 0 && (
             <div className="pt-4 space-y-4">
-              <h3 className="font-semibold text-blue-900 dark:text-blue-100 uppercase tracking-wider text-sm flex items-center gap-2">
+              <h3 className="font-semibold text-orange-900 dark:text-orange-100 uppercase tracking-wider text-sm flex items-center gap-2">
                 <Check className="h-4 w-4" /> Proposed Quest Line
               </h3>
               <ul className="space-y-2">
                 {generatedTasks.map((t, idx) => (
-                  <li key={idx} className="flex items-center gap-3 bg-white dark:bg-zinc-900 p-3 rounded-lg border border-blue-100 dark:border-zinc-800 shadow-sm">
-                    <div className="h-6 w-6 rounded-full bg-blue-100 dark:bg-zinc-800 text-blue-700 dark:text-zinc-400 flex items-center justify-center text-xs font-bold font-mono">
+                  <li key={idx} className="flex items-center gap-3 bg-white dark:bg-zinc-900 p-3 rounded-lg border border-orange-100 dark:border-zinc-800 shadow-sm">
+                    <div className="h-6 w-6 rounded-full bg-orange-100 dark:bg-zinc-800 text-orange-700 dark:text-zinc-400 flex items-center justify-center text-xs font-bold font-mono">
                       {idx + 1}
                     </div>
                     <span className="flex-1 font-medium">{t.title}</span>

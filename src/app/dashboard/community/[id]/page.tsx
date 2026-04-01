@@ -432,7 +432,7 @@ export default function CommunityDetailPage() {
                   key={member.id}
                   onClick={() => router.push(`/dashboard/u/${member.users.username || 'unknown'}`)}
                   className={`p-4 flex items-center gap-3 cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors ${
-                    member.user_id === user?.id ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''
+                    member.user_id === user?.id ? 'bg-orange-50/50 dark:bg-orange-900/10' : ''
                   }`}
                 >
                   <div className="w-7 shrink-0 flex justify-center">
@@ -593,8 +593,8 @@ export default function CommunityDetailPage() {
 
       {/* ─── Join Requests (Admin) ─── */}
       {isAdmin && joinRequests.length > 0 && (
-        <div className="glass-card border-blue-500/50 rounded-2xl p-6 shadow-sm">
-          <h3 className="font-bold text-lg flex items-center gap-2 mb-4 text-blue-800 dark:text-blue-400">
+        <div className="glass-card border-orange-500/50 rounded-2xl p-6 shadow-sm">
+          <h3 className="font-bold text-lg flex items-center gap-2 mb-4 text-orange-800 dark:text-orange-400">
             <UserCheck className="w-5 h-5" /> Join Requests ({joinRequests.length})
           </h3>
           <div className="space-y-3">

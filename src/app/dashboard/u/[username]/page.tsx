@@ -236,7 +236,7 @@ export default function PublicProfilePage() {
       {/* Banner & Profile Setup */}
       <div className="bg-white dark:bg-zinc-900 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden">
         {/* Abstract Banner Layer */}
-        <div className="h-48 bg-gradient-to-r from-blue-600 to-orange-600 relative overflow-hidden flex items-center justify-center">
+        <div className="h-48 bg-gradient-to-r from-orange-600 to-orange-600 relative overflow-hidden flex items-center justify-center">
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 Mix-blend-overlay"></div>
         </div>
 

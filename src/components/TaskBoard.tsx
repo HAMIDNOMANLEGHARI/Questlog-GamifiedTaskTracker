@@ -162,7 +162,7 @@ export function TaskBoard() {
             type="text" 
             value={newTaskTitle}
             onChange={(e) => setNewTaskTitle(e.target.value)}
-            className="w-full bg-transparent text-lg border-b border-zinc-200 dark:border-zinc-800 focus:border-blue-500 pb-2 outline-none transition-colors placeholder:text-zinc-300 dark:placeholder:text-zinc-700"
+            className="w-full bg-transparent text-lg border-b border-zinc-200 dark:border-zinc-800 focus:border-orange-500 pb-2 outline-none transition-colors placeholder:text-zinc-300 dark:placeholder:text-zinc-700"
             placeholder="e.g., Read chapter 4 of Biology..."
           />
         </div>
@@ -173,7 +173,7 @@ export function TaskBoard() {
             type="date"
             value={newTaskDeadline}
             onChange={(e) => setNewTaskDeadline(e.target.value)}
-            className="w-full px-3 py-2 glass-input rounded-lg outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full px-3 py-2 glass-input rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-sm"
           />
         </div>
         <div className="w-full md:w-32 space-y-2">
@@ -182,7 +182,7 @@ export function TaskBoard() {
             aria-label="Task Category"
             value={newTaskCategory}
             onChange={(e) => setNewTaskCategory(e.target.value)}
-            className="w-full px-3 py-2 glass-input rounded-lg outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full px-3 py-2 glass-input rounded-lg outline-none focus:ring-2 focus:ring-orange-500 text-sm"
           >
             {categories.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
@@ -190,7 +190,7 @@ export function TaskBoard() {
         <button 
           disabled={isAdding || !newTaskTitle.trim()}
           type="submit" 
-          className="w-full md:w-auto h-[38px] px-6 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium flex items-center justify-center gap-2 disabled:opacity-50 transition-colors"
+          className="w-full md:w-auto h-[38px] px-6 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-medium flex items-center justify-center gap-2 disabled:opacity-50 transition-colors"
         >
           {isAdding ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
           Add
@@ -210,13 +210,13 @@ export function TaskBoard() {
                 "flex flex-col p-4 rounded-xl glass-card transition-all",
                 task.status === 'completed' 
                   ? "opacity-60 saturate-50" 
-                  : "hover:border-blue-300 dark:hover:border-blue-500/50 hover:shadow-blue-500/10"
+                  : "hover:border-orange-300 dark:hover:border-orange-500/50 hover:shadow-orange-500/10"
               )}
             >
               <div className="flex items-center gap-4">
                 <button 
                   onClick={() => handleToggleTask(task)}
-                  className="flex-shrink-0 text-zinc-400 hover:text-blue-500 transition-colors"
+                  className="flex-shrink-0 text-zinc-400 hover:text-orange-500 transition-colors"
                 >
                   {task.status === 'completed' 
                     ? <CheckCircle2 className="h-6 w-6 text-amber-500" /> 
@@ -235,7 +235,7 @@ export function TaskBoard() {
                       <div className={cn(
                         "w-2 h-2 rounded-full mr-2",
                         task.category === 'Work' && "bg-orange-500",
-                        task.category === 'Study' && "bg-blue-500",
+                        task.category === 'Study' && "bg-orange-500",
                         task.category === 'Personal' && "bg-fuchsia-500"
                       )} />
                       {task.category}
@@ -256,7 +256,7 @@ export function TaskBoard() {
                 
                 <button 
                   onClick={() => setExpandedTask(expandedTask === task.id ? null : task.id)}
-                  className="p-2 text-zinc-400 hover:text-blue-500 rounded-lg transition-colors"
+                  className="p-2 text-zinc-400 hover:text-orange-500 rounded-lg transition-colors"
                   title="Attach Material"
                 >
                   {expandedTask === task.id ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
@@ -467,7 +467,7 @@ function TaskMaterials({ taskId }: { taskId: string }) {
         </div>
         
         <div className="flex items-center gap-2">
-          <label className="flex items-center justify-center px-4 py-2 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors text-sm w-full font-medium text-zinc-600 dark:text-zinc-400">
+          <label className="flex items-center justify-center px-4 py-2 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg cursor-pointer hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-500/10 transition-colors text-sm w-full font-medium text-zinc-600 dark:text-zinc-400">
             {uploading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Plus className="h-4 w-4 mr-2" />}
             {uploading ? 'Uploading...' : 'Upload PDF / Note File'}
             <input 
@@ -484,7 +484,7 @@ function TaskMaterials({ taskId }: { taskId: string }) {
         <ul className="space-y-2 mt-4">
           {materials.map(m => (
             <li key={m.id} className="flex items-center justify-between text-sm p-2 rounded bg-zinc-50 dark:bg-zinc-800/50">
-              <a href={m.file_url} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline flex items-center gap-2 truncate">
+              <a href={m.file_url} target="_blank" rel="noreferrer" className="text-orange-500 hover:underline flex items-center gap-2 truncate">
                 <LinkIcon className="h-4 w-4 shrink-0" />
                 <span className="truncate">{m.type === 'pdf' ? 'PDF Document' : m.file_url}</span>
               </a>

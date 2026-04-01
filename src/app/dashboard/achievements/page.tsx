@@ -33,7 +33,7 @@ const RARITY_STYLES = {
   common: { bg: 'bg-amber-100 dark:bg-amber-500/10', text: 'text-amber-600 dark:text-amber-500', border: 'border-amber-500/30' },
   rare: { bg: 'bg-slate-100 dark:bg-slate-400/10', text: 'text-slate-500 dark:text-slate-400', border: 'border-slate-400/30' },
   epic: { bg: 'bg-yellow-100 dark:bg-yellow-500/10', text: 'text-yellow-600 dark:text-yellow-500', border: 'border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.2)]' },
-  legendary: { bg: 'bg-cyan-100 dark:bg-cyan-500/10', text: 'text-cyan-600 dark:text-cyan-400', border: 'border-cyan-500/50 shadow-[0_0_20px_rgba(34,211,238,0.4)]' }
+  legendary: { bg: 'bg-orange-100 dark:bg-orange-500/10', text: 'text-orange-600 dark:text-orange-400', border: 'border-orange-500/50 shadow-[0_0_20px_rgba(34,211,238,0.4)]' }
 };
 
 export default function AchievementsPage() {
