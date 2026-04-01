@@ -11,9 +11,10 @@ import { toast } from 'react-hot-toast';
 import confetti from 'canvas-confetti';
 import {
   Loader2, Trophy, Users, Plus, CheckCircle2, Circle, Clock, Search,
-  ArrowLeft, Crown, UserPlus, X, ShieldAlert, UserCheck
+  ArrowLeft, Crown, UserPlus, X, ShieldAlert, UserCheck, Settings
 } from 'lucide-react';
 import { GroupChat } from '@/components/GroupChat';
+import { GroupSettingsModal } from '@/components/GroupSettingsModal';
 
 /* ─── Types ─── */
 interface Community {
@@ -22,6 +23,8 @@ interface Community {
   description: string | null;
   creator_id: string;
   avatar_emoji: string;
+  pinned_announcement: string | null;
+  invite_code: string | null;
   created_at: string;
 }
 
@@ -69,6 +72,7 @@ export default function CommunityDetailPage() {
   // Admin actions
   const [showAddMember, setShowAddMember] = useState(false);
   const [showAddTask, setShowAddTask] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const myMembership = members.find(m => m.user_id === user?.id);
   // Fallback: if user is the creator of the community, they're always admin
@@ -372,6 +376,9 @@ export default function CommunityDetailPage() {
           </div>
           {isAdmin && (
             <div className="flex flex-col gap-3 shrink-0">
+              <button onClick={() => setShowSettings(true)} className="flex items-center gap-2 px-5 py-2.5 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-xl font-bold text-sm transition-all">
+                <Settings className="w-4 h-4" /> Settings
+              </button>
               <button onClick={() => setShowAddMember(true)} className="flex items-center gap-2 px-5 py-2.5 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-xl font-bold text-sm transition-all">
                 <UserPlus className="w-4 h-4" /> Add Member
               </button>
@@ -382,6 +389,21 @@ export default function CommunityDetailPage() {
           )}
         </div>
       </div>
+
+      {/* Pinned Announcement */}
+      {community.pinned_announcement && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="p-4 bg-orange-50 dark:bg-orange-900/10 border border-orange-200 dark:border-orange-900/30 rounded-2xl flex items-start gap-3"
+        >
+          <span className="text-xl shrink-0">📌</span>
+          <div>
+            <p className="text-xs font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wider mb-1">Pinned Announcement</p>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300 whitespace-pre-wrap">{community.pinned_announcement}</p>
+          </div>
+        </motion.div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* ─── Leaderboard ─── */}
@@ -613,6 +635,18 @@ export default function CommunityDetailPage() {
         assignedBy={user?.id || ''}
         onAssigned={loadCommunity}
       />
+
+      {/* ─── Group Settings Modal ─── */}
+      {community && (
+        <GroupSettingsModal
+          isOpen={showSettings}
+          onClose={() => setShowSettings(false)}
+          community={community}
+          members={members}
+          currentUserId={user?.id || ''}
+          onUpdated={() => { loadCommunity(); setShowSettings(false); }}
+        />
+      )}
     </div>
   );
 }
