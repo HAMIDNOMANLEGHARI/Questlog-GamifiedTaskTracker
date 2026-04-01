@@ -129,7 +129,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[2rem] shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-lg glass-panel rounded-[2rem] shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-zinc-200 dark:border-zinc-800">
@@ -251,7 +251,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   maxLength={40}
-                  className="w-full px-5 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium transition-all shadow-sm"
+                  className="w-full px-5 py-3 rounded-xl glass-input font-medium transition-all shadow-sm"
                   placeholder="e.g., Study Squad, Code Warriors..."
                 />
               </div>
@@ -264,7 +264,7 @@ export function CreateCommunityModal({ isOpen, onClose, onCreated }: CreateCommu
                   onChange={(e) => setDescription(e.target.value)}
                   maxLength={200}
                   rows={3}
-                  className="w-full px-5 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium transition-all shadow-sm resize-none"
+                  className="w-full px-5 py-3 rounded-xl glass-input font-medium transition-all shadow-sm resize-none"
                   placeholder="What's this group about?"
                 />
               </div>

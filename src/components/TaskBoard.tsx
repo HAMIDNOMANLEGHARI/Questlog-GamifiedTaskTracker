@@ -154,7 +154,7 @@ export function TaskBoard() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         onSubmit={handleAddTask} 
-        className="flex flex-col md:flex-row gap-4 md:items-end bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm"
+        className="flex flex-col md:flex-row gap-4 md:items-end glass-card p-6 rounded-2xl"
       >
         <div className="flex-1 min-w-[200px] space-y-2">
           <label className="text-sm font-medium text-zinc-500">I need to...</label>
@@ -173,7 +173,7 @@ export function TaskBoard() {
             type="date"
             value={newTaskDeadline}
             onChange={(e) => setNewTaskDeadline(e.target.value)}
-            className="w-full px-3 py-2 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full px-3 py-2 glass-input rounded-lg outline-none focus:ring-2 focus:ring-blue-500 text-sm"
           />
         </div>
         <div className="w-full md:w-32 space-y-2">
@@ -182,7 +182,7 @@ export function TaskBoard() {
             aria-label="Task Category"
             value={newTaskCategory}
             onChange={(e) => setNewTaskCategory(e.target.value)}
-            className="w-full px-3 py-2 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full px-3 py-2 glass-input rounded-lg outline-none focus:ring-2 focus:ring-blue-500 text-sm"
           >
             {categories.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
@@ -207,10 +207,10 @@ export function TaskBoard() {
               exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
               key={task.id} 
               className={cn(
-                "flex flex-col p-4 rounded-xl border bg-white dark:bg-zinc-900 transition-all",
+                "flex flex-col p-4 rounded-xl glass-card transition-all",
                 task.status === 'completed' 
-                  ? "border-zinc-100 dark:border-zinc-800 opacity-60" 
-                  : "border-zinc-200 dark:border-zinc-700 hover:border-blue-300"
+                  ? "opacity-60 saturate-50" 
+                  : "hover:border-blue-300 dark:hover:border-blue-500/50 hover:shadow-blue-500/10"
               )}
             >
               <div className="flex items-center gap-4">

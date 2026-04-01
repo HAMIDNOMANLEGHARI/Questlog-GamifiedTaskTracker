@@ -28,7 +28,7 @@ export default function DashboardLayout({
   const themeBgClass = isPremiumTheme ? selectedTheme.cssClass.split(' ')[0] : 'bg-zinc-50 dark:bg-black';
 
   return (
-    <div className={`flex h-screen overflow-hidden transition-colors duration-500 ${mounted ? themeBgClass : 'bg-zinc-50 dark:bg-black'}`}>
+    <div className={`flex h-screen overflow-hidden transition-colors duration-500 bg-transparent`}>
       <Sidebar />
       <main className="flex-1 overflow-y-auto p-4 md:p-8 pt-20 md:pt-8 overflow-x-hidden">
         <ErrorBoundary fallbackMessage="Something went wrong loading this page. Check your connection and try again.">
@@ -36,7 +36,7 @@ export default function DashboardLayout({
             initial={{ opacity: 0, scale: 0.98, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="h-full"
+            className="h-full max-w-7xl mx-auto"
           >
             {children}
           </motion.div>

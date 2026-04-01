@@ -131,7 +131,7 @@ export function Sidebar() {
       </div>
 
       {/* Desktop sidebar (always visible) */}
-      <div className="hidden md:flex h-screen w-64 flex-col border-r bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl">
+      <div className="hidden md:flex h-screen w-[280px] flex-col glass-panel border-r-0 border-y-0 border-l-0 shadow-2xl z-10 transition-all">
         {sidebarContent}
       </div>
     </>

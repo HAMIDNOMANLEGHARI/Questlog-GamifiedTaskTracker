@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "react-hot-toast";
-const inter = Inter({ subsets: ["latin"] });
+
+const outfit = Outfit({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800", "900"] });
 
 export const metadata: Metadata = {
   title: "LevelUp - Gamified Productivity",
@@ -17,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-zinc-50 text-zinc-900 dark:bg-black dark:text-zinc-100`}>
+      <body className={`${outfit.className} antialiased min-h-screen animated-blob-bg text-zinc-900 dark:text-zinc-100 selection:bg-indigo-500/30`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -29,9 +30,12 @@ export default function RootLayout({
             position="bottom-right" 
             toastOptions={{
               style: {
-                background: '#333',
+                background: 'rgba(24, 24, 27, 0.8)',
+                backdropFilter: 'blur(12px)',
                 color: '#fff',
-                borderRadius: '12px',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
               },
             }}
           />

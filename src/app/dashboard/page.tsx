@@ -38,7 +38,7 @@ export default function DashboardPage() {
 
       <div className="grid gap-6 md:grid-cols-3">
         {/* Core Stats */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+        <div className="p-6 rounded-2xl glass-card">
           <h3 className="text-sm font-medium text-zinc-500">Current Level</h3>
           <p className="text-3xl font-bold text-blue-600 mt-2">{gamification?.level || 1}</p>
           <div className="mt-4 h-2 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
@@ -50,13 +50,13 @@ export default function DashboardPage() {
           <p className="text-xs text-zinc-500 mt-2">{(gamification?.xp || 0) % 100} / 100 XP to next level</p>
         </div>
 
-        <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+        <div className="p-6 rounded-2xl glass-card">
           <h3 className="text-sm font-medium text-zinc-500">Day Streak</h3>
           <p className="text-3xl font-bold text-orange-500 mt-2">{gamification?.streak_count || 0} 🔥</p>
           <p className="text-xs text-zinc-500 mt-2">Keep it up! Login tomorrow for bonus XP.</p>
         </div>
 
-        <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+        <div className="p-6 rounded-2xl glass-card">
           <h3 className="text-sm font-medium text-zinc-500">Pending Tasks</h3>
           <p className="text-3xl font-bold text-emerald-500 mt-2">{pendingTasks.length}</p>
           <p className="text-xs text-zinc-500 mt-2">Finish them to earn {(pendingTasks.length) * 10} XP</p>
@@ -66,13 +66,13 @@ export default function DashboardPage() {
       {/* Charts & Recent Tasks & Quotes */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Quote Plate */}
-        <div className="col-span-1 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm flex flex-col justify-center items-center text-center">
+        <div className="col-span-1 glass-card rounded-2xl p-6 flex flex-col justify-center items-center text-center">
           <Quote className="h-8 w-8 text-blue-500 mb-4 opacity-50" />
           <p className="text-lg font-medium text-zinc-700 dark:text-zinc-300 italic mb-4">&quot;{quote.text}&quot;</p>
           <p className="text-sm font-bold text-zinc-400">— {quote.author}</p>
         </div>
 
-        <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm col-span-1 lg:col-span-2">
+        <div className="p-6 rounded-2xl glass-card col-span-1 lg:col-span-2">
           <TotalTasksChart />
         </div>
       </div>

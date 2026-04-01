@@ -414,7 +414,7 @@ export default function CommunityDetailPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* ─── Leaderboard ─── */}
-        <div className="lg:col-span-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm overflow-hidden">
+        <div className="lg:col-span-1 glass-card rounded-2xl overflow-hidden">
           <div className="p-5 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-3">
             <div className="p-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-500 rounded-xl">
               <Trophy className="h-5 w-5" />
@@ -500,7 +500,7 @@ export default function CommunityDetailPage() {
         <div className="lg:col-span-2 space-y-6">
           {/* Pending Approvals (Admin) */}
           {isAdmin && pendingApprovalTasks.length > 0 && (
-            <div className="bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-900/30 rounded-2xl p-6 shadow-sm">
+            <div className="glass-card border-yellow-500/50 rounded-2xl p-6">
               <h3 className="font-bold text-lg flex items-center gap-2 mb-4 text-yellow-800 dark:text-yellow-400">
                 <ShieldAlert className="w-5 h-5" /> Pending Approvals ({pendingApprovalTasks.length})
               </h3>
@@ -512,7 +512,7 @@ export default function CommunityDetailPage() {
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
                       key={task.id}
-                      className="bg-white dark:bg-zinc-900 rounded-xl p-4 border border-zinc-200 dark:border-zinc-700 flex items-center gap-4"
+                      className="glass-panel rounded-xl p-4 flex items-center gap-4"
                     >
                       <Clock className="w-5 h-5 text-yellow-500 shrink-0" />
                       <div className="flex-1 min-w-0">
@@ -531,7 +531,7 @@ export default function CommunityDetailPage() {
           )}
 
           {/* All Tasks */}
-          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm overflow-hidden">
+          <div className="glass-card rounded-2xl overflow-hidden">
             <div className="p-5 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
               <h2 className="font-bold text-lg flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-indigo-500" /> Group Tasks
@@ -593,7 +593,7 @@ export default function CommunityDetailPage() {
 
       {/* ─── Join Requests (Admin) ─── */}
       {isAdmin && joinRequests.length > 0 && (
-        <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-900/30 rounded-2xl p-6 shadow-sm">
+        <div className="glass-card border-blue-500/50 rounded-2xl p-6 shadow-sm">
           <h3 className="font-bold text-lg flex items-center gap-2 mb-4 text-blue-800 dark:text-blue-400">
             <UserCheck className="w-5 h-5" /> Join Requests ({joinRequests.length})
           </h3>

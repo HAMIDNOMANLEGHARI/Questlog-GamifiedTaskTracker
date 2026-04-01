@@ -81,8 +81,8 @@ export default function ShopPage() {
                 isUnlocked 
                   ? equipped 
                     ? 'bg-indigo-50 border-indigo-500 dark:bg-indigo-500/10 dark:border-indigo-500 shadow-[0_0_30px_rgba(99,102,241,0.2)]'
-                    : 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-indigo-300 dark:hover:border-indigo-700 shadow-xl shadow-zinc-200/20 dark:shadow-none'
-                  : 'bg-zinc-100 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800/80 opacity-70 grayscale'
+                    : 'glass-card hover:border-indigo-300 dark:hover:border-indigo-700'
+                  : 'glass-panel opacity-70 grayscale'
               }`}
             >
               {!isUnlocked && (
@@ -193,7 +193,7 @@ export default function ShopPage() {
             className={`px-8 py-3.5 rounded-2xl font-extrabold capitalize whitespace-nowrap transition-all snap-center flex items-center gap-2 ${
               activeTab === tab
                 ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-xl scale-105'
-                : 'bg-white text-zinc-500 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800'
+                : 'glass-card text-zinc-600 dark:text-zinc-400 hover:scale-105'
             }`}
           >
             {tab === 'themes' && <Palette className="w-5 h-5" />}

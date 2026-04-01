@@ -252,7 +252,7 @@ export default function CommunityPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 p-1.5 bg-zinc-100 dark:bg-zinc-800/70 rounded-2xl w-fit">
+      <div className="flex gap-1 p-1.5 glass-input rounded-2xl w-fit">
         <button
           onClick={() => setActiveTab('groups')}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${
@@ -309,7 +309,7 @@ export default function CommunityPage() {
                   whileHover={{ scale: 1.03, y: -3 }}
                   key={mc.community_id}
                   onClick={() => router.push(`/dashboard/community/${mc.community_id}`)}
-                  className="cursor-pointer p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-lg transition-all"
+                  className="cursor-pointer p-5 rounded-2xl glass-card hover:shadow-lg hover:border-indigo-400/50 transition-all"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="text-3xl shrink-0">
@@ -349,7 +349,7 @@ export default function CommunityPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search groups by name, description, or creator..."
-              className="w-full pl-12 pr-5 py-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all shadow-sm"
+              className="w-full pl-12 pr-5 py-3.5 rounded-2xl glass-input text-sm font-medium shadow-sm"
             />
             {searchQuery && (
               <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 transition-colors text-xs font-bold">
@@ -398,7 +398,7 @@ export default function CommunityPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   key={group.id}
-                  className="p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-lg transition-all flex flex-col"
+                  className="p-5 rounded-2xl glass-card hover:shadow-lg transition-all flex flex-col"
                 >
                   <div className="flex items-center gap-3 mb-2">
                     <div className="text-3xl shrink-0">
@@ -444,7 +444,7 @@ export default function CommunityPage() {
       {/* Global Leaderboard + Tavern */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 space-y-4">
-          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
+          <div className="glass-card rounded-2xl overflow-hidden shadow-sm">
             <div className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-3">
               <div className="p-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-500 rounded-xl">
                 <Trophy className="h-6 w-6" />

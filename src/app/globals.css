@@ -2,24 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply antialiased text-zinc-900 dark:text-zinc-100;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .animated-blob-bg {
+    background: linear-gradient(-45deg, #f8fafc, #e0e7ff, #f3e8ff, #fdf4ff);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    background-attachment: fixed;
   }
+
+  .dark .animated-blob-bg {
+    background: linear-gradient(-45deg, #050505, #1e1b4b, #2e1065, #0f172a);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    background-attachment: fixed;
+  }
+
+  .glass-card {
+    @apply bg-white/70 dark:bg-zinc-950/60 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-xl;
+  }
+  
+  .glass-panel {
+    @apply bg-white/40 dark:bg-black/50 backdrop-blur-2xl border border-white/40 dark:border-white/5;
+  }
+
+  .glass-input {
+    @apply bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md border border-zinc-200 dark:border-white/10 focus:ring-2 focus:ring-indigo-500/50 transition-all;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

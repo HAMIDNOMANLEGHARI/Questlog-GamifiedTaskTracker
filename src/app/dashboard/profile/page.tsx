@@ -264,7 +264,7 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="p-8 rounded-[2rem] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-xl space-y-5"
+          className="p-8 rounded-[2rem] glass-panel shadow-xl space-y-5"
         >
           <h2 className="text-xl font-bold tracking-tight text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
             <Users className="h-5 w-5 text-indigo-500" /> Your Groups
@@ -274,7 +274,7 @@ export default function ProfilePage() {
               <div
                 key={g.community_id}
                 onClick={() => router.push(`/dashboard/community/${g.community_id}`)}
-                className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:border-indigo-300 dark:hover:border-indigo-700 cursor-pointer transition-all hover:shadow-md"
+                className="flex items-center gap-3 p-4 rounded-xl glass-card hover:border-indigo-300 dark:hover:border-indigo-700 cursor-pointer transition-all hover:shadow-md"
               >
                 <div className="text-2xl shrink-0">
                   {g.sub_communities.avatar_emoji.startsWith('http') ? (
@@ -300,7 +300,7 @@ export default function ProfilePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
         onSubmit={handleSave} 
-        className="p-8 rounded-[2rem] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-xl space-y-8"
+        className="p-8 rounded-[2rem] glass-panel shadow-xl space-y-8"
       >
         <div>
           <h2 className="text-xl font-bold tracking-tight mb-6 text-zinc-800 dark:text-zinc-200">Player Details</h2>
@@ -315,7 +315,7 @@ export default function ProfilePage() {
                 type="email"
                 disabled
                 value={user?.email || ''}
-                className="w-full px-5 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-950/50 text-zinc-400 cursor-not-allowed font-medium"
+                className="w-full px-5 py-3 rounded-xl glass-input opacity-60 text-zinc-400 cursor-not-allowed font-medium"
               />
             </div>
             
@@ -327,7 +327,7 @@ export default function ProfilePage() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-5 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium transition-all shadow-sm"
+                className="w-full px-5 py-3 rounded-xl glass-input font-medium transition-all shadow-sm"
                 placeholder="Enter your gamer tag"
               />
             </div>
@@ -350,7 +350,7 @@ export default function ProfilePage() {
                       ? 'opacity-40 grayscale cursor-not-allowed border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800/50'
                       : avatarUrl === item.emoji
                         ? 'bg-indigo-100 border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:scale-110'
-                        : 'bg-white/50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 hover:scale-110'
+                        : 'glass-input hover:scale-110'
                   }`}
                   title={isUnlocked ? item.emoji : `Unlock at Level ${item.levelReq} (The Vault)`}
                 >

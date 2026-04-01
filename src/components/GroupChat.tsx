@@ -227,9 +227,9 @@ export function GroupChat({ communityId }: GroupChatProps) {
   let lastDateLabel = '';
 
   return (
-    <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+    <div className="glass-card rounded-2xl shadow-sm overflow-hidden flex flex-col h-[600px]">
       {/* Header */}
-      <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-3">
+      <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-3 bg-white/40 dark:bg-black/20 backdrop-blur-xl z-10">
         <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-xl">
           <MessageSquare className="h-5 w-5" />
         </div>
@@ -240,7 +240,7 @@ export function GroupChat({ communityId }: GroupChatProps) {
       </div>
 
       {/* Messages */}
-      <div className="h-96 overflow-y-auto p-4 space-y-1 bg-[#f0f2f5] dark:bg-zinc-950/70" onClick={() => { setReactionPickerMsgId(null); setShowEmojiPicker(false); }}>
+      <div className="h-96 overflow-y-auto p-4 space-y-1 bg-[#f0f2f5]/50 dark:bg-black/40 flex-1" onClick={() => { setReactionPickerMsgId(null); setShowEmojiPicker(false); }}>
         {loading ? (
           <div className="flex justify-center items-center h-full">
             <Loader2 className="w-6 h-6 animate-spin text-zinc-400" />
@@ -393,7 +393,7 @@ export function GroupChat({ communityId }: GroupChatProps) {
       </AnimatePresence>
 
       {/* Input */}
-      <form onSubmit={handleSend} className="p-3 border-t border-zinc-200 dark:border-zinc-800 flex items-center gap-2 bg-white dark:bg-zinc-900">
+      <form onSubmit={handleSend} className="p-3 border-t border-zinc-200 dark:border-zinc-800 flex items-center gap-2 bg-white/40 dark:bg-black/20 backdrop-blur-xl z-20">
         <button
           type="button"
           onClick={(e) => { e.stopPropagation(); setShowEmojiPicker(!showEmojiPicker); }}
@@ -408,7 +408,7 @@ export function GroupChat({ communityId }: GroupChatProps) {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type a message..."
           maxLength={500}
-          className="flex-1 px-4 py-2.5 rounded-full bg-zinc-100 dark:bg-zinc-800 border-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="flex-1 px-4 py-2.5 rounded-full glass-input text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
         <button
           type="submit"

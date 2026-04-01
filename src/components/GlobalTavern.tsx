@@ -145,9 +145,9 @@ export function GlobalTavern() {
   };
 
   return (
-    <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm flex flex-col h-[600px] overflow-hidden">
+    <div className="glass-card border-orange-500/30 shadow-sm flex flex-col h-[600px] overflow-hidden rounded-2xl">
       {/* Header */}
-      <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 flex items-center justify-between">
+      <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-black/20 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl">
             <MessageSquare className="h-5 w-5" />
@@ -246,14 +246,14 @@ export function GlobalTavern() {
       </div>
 
       {/* Input */}
-      <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+      <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-black/20">
         <form onSubmit={handleSend} className="relative">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type a message to the global tavern..."
-            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl pl-4 pr-12 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+            className="w-full glass-input rounded-xl pl-4 pr-12 py-3 text-sm"
             maxLength={500}
             disabled={!user || isSending}
           />
