@@ -97,9 +97,9 @@ export default function LandingPage() {
       <LandingHeader />
 
       {/* Sunset Ember Ambient Background */}
-      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-[#FF4500]/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[800px] h-[800px] bg-[#FFA500]/5 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 w-[1000px] h-[500px] bg-[#FF6B00]/5 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-[#FF4500]/20 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[800px] h-[800px] bg-[#FFA500]/15 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 w-[1000px] h-[500px] bg-[#FF6B00]/15 rounded-full blur-[200px] pointer-events-none" />
 
       {/* HERO SECTION */}
       <div id="hero" className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 pb-12 md:pb-20 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 min-h-[90vh]">
@@ -129,7 +129,7 @@ export default function LandingPage() {
           </h1>
           
           <p className="text-xl text-zinc-400 font-medium leading-relaxed max-w-lg">
-            Stop using boring corporate apps. Earn massive XP, complete AI-generated side quests, flex your heatmaps, and battle procrastination with friends. 🎮
+            Transform your boring to-do list into an epic RPG adventure. Track tasks, earn massive XP, complete AI-generated quests, and battle procrastination with your friends. 🎮
           </p>
 
           <div className="flex items-center gap-6 pt-4 opacity-80">
@@ -137,7 +137,7 @@ export default function LandingPage() {
               <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" className="h-12 w-12 rounded-full border-2 border-black object-cover" alt="User" />
               <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" className="h-12 w-12 rounded-full border-2 border-black object-cover" alt="User" />
               <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" className="h-12 w-12 rounded-full border-2 border-black object-cover" alt="User" />
-              <div className="h-12 w-12 rounded-full border-2 border-black bg-[#FF00FF] flex items-center justify-center text-xs font-black text-black">+10k</div>
+              <div className="h-12 w-12 rounded-full border-2 border-black bg-orange-500 flex items-center justify-center text-xs font-black text-black">+10k</div>
             </div>
             <div className="text-sm font-medium text-zinc-400">Join the arena before it&apos;s mainstream.</div>
           </div>
@@ -162,8 +162,11 @@ export default function LandingPage() {
             <p className="text-xs text-zinc-200 indent-1 italic font-medium tracking-wide">&quot;Literally addicted to getting my life together rn tbh.&quot;</p>
           </motion.div>
 
+          {/* Strong Glowing Aura specifically behind the Panel */}
+          <div className="absolute top-1/2 left-1/2 w-[120%] h-[120%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-tr from-[#FF4500]/20 to-[#FFA500]/20 blur-[100px] pointer-events-none z-0 rounded-full" />
+
           {/* Form */}
-          <div className="relative glass-card p-8">
+          <div className="relative glass-card p-8 z-10 shadow-[0_0_80px_rgba(255,107,0,0.2)]">
             <div className="text-left space-y-2 mb-8">
               <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2 uppercase">
                 {isLogin ? 'ENTER THE ARENA' : 'Join the Party.'}

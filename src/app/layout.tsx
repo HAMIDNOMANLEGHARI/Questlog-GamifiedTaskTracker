@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${plusJakarta.className} antialiased min-h-screen deep-space-bg text-zinc-100 selection:bg-[#2B60FF]/30`}>
+      <body className={`${plusJakarta.className} antialiased min-h-screen deep-space-bg text-zinc-100 selection:bg-orange-500/30`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
